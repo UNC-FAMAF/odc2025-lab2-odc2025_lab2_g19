@@ -20,6 +20,7 @@ main:
 loop1:
 	mov x1, SCREEN_WIDTH         // X Size
 loop0:
+	mov w10, 0xFFFFFF
 	stur w10,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
 	sub x1,x1,1	   // Decrementar contador X
