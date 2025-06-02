@@ -47,7 +47,7 @@ loop0:
 	mov x1, POS_MARCO_TELE_Y
 	mov x4, 476
 	mov x5, 252
-	b hacer_rectangulo
+	bl hacer_rectangulo
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
@@ -77,28 +77,23 @@ InfLoop:
 // Funciones
 hacer_rectangulo: //toma x0: esquina sup. izq. x,  x1: esquina sup. izq. y,
                   //x4: ancho, x5: alto, W10: color
-	//inicializamos los registros base
-	lsl x0, x0, #2 
-	lsl x1, x1, #2
-	mov x10, 640
-	mul x1, x1, x10
-	lsl x4, x4, #2 //ancho * 4 porue nos movemos cada 4 bytes por pixel
-	add x4, x0, x4
-	lsl x5, x5, #2
-	mul x5, x5, x10 // alto * 4 * 640 es el pixel limite del alto en el array 
-	add x5, x1, x5
-	add x1, x0, x1
-	add x1, x1, x20
-	mov x12, 0 //nuestro contador de filas
+	lsl x0, x0, #2 //todo * 4 porque nos movemos cada 4 bytes por pixel
+	lsl x4, x4, #2
+	mov x10, 2560 // 640 * 4, solo se puede multiplicar con registros :(
+	mul x1, x1, x10 // las alturas son como recorrer una "fila completa", no se //16*4*640
+	add x1, x1, x20 // xd + ps
+	mul x5, x5, x10 // puede hacer de otra forma porque la pantalla es lineal   //250*4*640
+	add x4, x0, x4 // el largo y ancho dependen del punto de partida
+	add x5, x1, x5 // ahora tratamos x4 y x5 como los pixeles limite de dibujo  // 266*xd +
+	mov x12, x1 //hago un contador de filas para poder ir saltando hacia abajo
 loop1_hr:
-	cmp x12, x5  //si llegamos a la posicion y limite, cortamos
+	cmp x12, x5  //si llegamos a la fila limite, cortamos
 	b.eq fin_hacer_rectangulo
-	add x1, x1, x12 // punto de partida en xy.
-	add x11, x4, x12 // punto de llegada: ancho por 4 mas n fila
-	add x11, x11, x20 // encontramos la posicion de memoria del pixel limite
-					 // moviendonos x11 posiciones en el array
+	add x1, x0, x12 // para saltar, vamos al comienzo de la fila y sumamos x0
+	add x11, x4, x12 // nuevo punto de llegada: pixel destino de la columna mas n filas
 	add x12, x12, 2560 // sumamos 640*4 posiciones de registro y tenemos el
-	                   // pixel de la fila de abajo
+	                   // pixel de la fila de abajo. Esto solo afecta a la
+					   // siguiente vuelt del bucle
 loop2_hr:
 	cmp x1, x11
 	b.eq loop1_hr // si llegamos al pixel largo limite, volvemos a sumar fila
