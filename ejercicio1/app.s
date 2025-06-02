@@ -25,7 +25,8 @@ main:
 	// NOTA: como todo lo pintamos de un solo color, uso por defecto w7 para
 	// holdear el color de la figura y lo cambio para cada figura con un color
 	// diferente. Creo que estaria bueno mantener esa convencion en todas las
-	// funciones, que el color sea siempre w7. 
+	// funciones, que el color sea siempre w7.
+	// NOTA2: LEAN ESTANDAR DE FUNCIONES ANTES DE ARRANCAR.
 	// FONDO
 	movz x10, 0xC7, lsl 16 // esto es codigo basura del start viejo, habria que
 	movk x10, 0x1585, lsl 00 // modificarlo para guardar el color de fondo
@@ -85,13 +86,24 @@ InfLoop:
 	b InfLoop
 
 // Funciones
+// Estándar de funciones (por si quieren hacer alguna)
+// Se usan de x0 a x6 como parametros. x7 queda reservado para el parametro
+// del color. x8 no se toca. En caso de necesitar mas parametros de variables,
+// tienen que usar la memoria del stack. Una vez definidos los parametros
+// pueden usar todos los x restantes hasta x6 y los registros desde x9 hasta
+// x15 como registros de uso libre para lo que necesiten en el momento.
+// Es recomendable que reutilizen los valores guardados en registros
+// en vez de volver a calcular para optimizar lineas de codigo, pero como la
+// cantidad es limitada (un maximo de 13 registros libres) no siempre es
+// posible hacer esto.
+
 // PRE: x0 < 640, x1 < 480, x2 < 640 + x0, x3 < 480 + x1, w7 <= 0xFFFFFF
 hacer_rectangulo: //toma x0: esquina sup. izq. x,  x1: esquina sup. izq. y,
                   //x2: ancho, x3: alto, w7: color
 	lsl x0, x0, #2 //todo * 2^2 (4) porque nos movemos cada 4 bytes por pixel
 	lsl x2, x2, #2 // hacer mul con un registro que tenga el #4 es equivalente,
-				   // yo uso lsl porque mul no toma numeros sueltos
-	mov x10, 2560 // 640 * 4, solo se puede multiplicar con registros :(
+				   // yo uso lsl porque mul no toma numeros sueltos.
+	mov x10, 2560 // 640 * 4, solo se puede multiplicar con registros :(. Esa es la escala de la altura, por cierto.
 	mul x1, x1, x10 // las alturas son como recorrer una fila completa,
 	mul x3, x3, x10 // por eso el 640
 	add x1, x1, x20 // A la altura le sumo el inicio del framebuffer
@@ -115,63 +127,46 @@ hacer_rectangulo: //toma x0: esquina sup. izq. x,  x1: esquina sup. izq. y,
 	b .loop2_hr
 
 // PRE: x0 < 640, x1 < 480, x2 < 640 + x0, x3 < 480 + x1, w7 <= 0xFFFFFF
-// NOTA: para no buscar toda la pantalla, por eficiencia decidi que es mejor
-// buscar solo en el cuadrado en donde esta el circulo, y por eso dibujo a
-// partir de la esquina superior izquierda. Para calculrla dado un centro 
-// (x, y) y un radio r, la esquina superior se calcula como (x - r, y - r)
-hacer_circulo: // toma x0: esq. sup. x,  x1: esq. sup. y, x2: radio, w7: color
-	lsl x0, x0, #2 // *4
+// buscamos en toda la pantalla porque, a diferencia del rectangulo que
+// no hay diferencia entre buscar en toda la pantalla y pintar el limite
+// o buscar en los limites y pintar, en el circulo las condiciones de
+// pintado (x^2 + y^2 = r^2) son las mismas en cualquier posicion en la
+// pantalla 
+hacer_circulo: // toma x0: centro x,  x1: centro y, x2: radio, w7: color
+	lsl x0, x0, #2
+	lsl x1, x1, #2
 	lsl x2, x2, #2
-	mov x9, 2560 
-	mul x1, x1, x9 // *4 *640 
-	add x10, x1, x20 // esq y + fb
-	                  // obteniendo la posicion del centro (x, y) en el frame
-	lsl x13, x2, #1 // para el alto del cuadrado, guardamos el diametro (2r) en x13
-	mul x14, x13, x9 
-	add x14, x10, x14 //esy * 2560 + fb + 2(r*4) *2560
-	mov x15, x10 //x15 = esy * 640 + fb, contador arranca desde esa pos
-.loop1_hc:
-	cmp x15, x14 
-	b.eq .ret // contador de filas igual que fila limite, cortamos
-	add x3, x0, x15 // 
-	add x4, x2, x2
-	add x4, x0, x4
-	add x4, x4, x15 // columna + 2r + contador
-	add x15, x15, 2560 
-	mov x10, 0
-.loop2_hc:
-	add x13, x3, x10
-	cmp x13, x4
-	b.eq .loop1_hc
-	// x^2+y^2 = r. y = +-sqrt(r^2 - x^2), idem x
-	sub x5, x3, X20 //obtenemos la posicion limpia, sin framebuffer
-	add x13, x0, x10 // pos actual x 
-	sub x6, x5, x13 // obtenemos la posicion de pos actual en y * 640
-	mov x9, 640
-	mul x12, x2, x9
-	add x12, x12, x1
-	sub x6, x6, x12
-	sdiv x6, x6, x9 // obtenemos la posicion del centro en y relativa al radio.
-	mul x11, x2, x2 // r2
-	sub x13, x10, x2 // x relativo al radio
-	mul x13, x13, x13 // x^2
-	subs x13, x11, x13 //r^2-x^2
-	b.lt .else
-	scvtf   d1, x13         // convert int → float
-	fsqrt   d0, d1         // d0 = sqrt(d1)
-	fcvtzs  x13, d0
-	cmp x6, x13 // y <= sqrt
+	mov x3, 640
+	mul x4, x1, x3 // x4 = centro y * 640
+	mov x5, SCREEN_HEIGH
+	mov x6, SCREEN_WIDTH
+	mul x6, x5, x6 //640*480
+	lsl x6, x6, #2 // * 4
+	add x6, x6, x20 // calculamos el final de la pantalla: ancho * alto * 4 + sp del fb
+	mov x5, x20 // x5 es puntero
+	lsl x3, x3, #2
+
+.loop_hc:
+	cmp x5, x6
+	b.eq .ret
+	sub x9, x5, X20 //obtenemos la posicion limpia, sin framebuffer, (y*640)+x
+	sdiv x10, x9, x3     // obtenemos nuestra posicion en y: y + x/2560
+	msub x11, x10, x3, x9 // obtenemos nuestra posicion en x = (y*2560)+x*4-y*640*4
+	lsl x10, x10, #2
+	sub x11, x11, x0 // obtenemos la posicion x relativa al centro: x - centro x
+	sub x10, x10, x1 // obtenemos la posicion y relativa al centro: y - centro y
+	mul x12, x2, x2 // r2
+	mul x11, x11, x11 // x^2
+	mul x10, x10, x10 //y^2
+	add x10, x10, x11
+	cmp x10, x12 // x^2+y^2=r^2
 	b.gt .else
-	sub x13, xzr, x13
-	cmp x6, x13
-	b.lt .else
-	str w7, [x3, x10] //pintamos
+	str w7, [x5] //pintamos
 .else:
-	add x10, x10, 4 //vamos al pixel siguiente	
-	b .loop2_hc
+	add x5, x5, 4 //vamos al pixel siguiente	
+	b .loop_hc
 
 .ret:
 	ret
-
 
 
