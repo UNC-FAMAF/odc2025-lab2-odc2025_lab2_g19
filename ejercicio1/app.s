@@ -7,17 +7,14 @@
 	.equ GPIO_GPLEV0,    0x34
 
 	//COLORES
-	.equ FONDO, 0x6F7BF6
-	.equ PISO, 0x3133CC
-	.equ SILLON1, 0xC00303
-	.equ SILLON2, 0x760202
-	.equ CASTANO, 0x6C4600
-	.equ COLORADO, 0xF94B16
-	.equ RUBIO, 0xE89700
-	.equ MARCO_TELE, 0x191919
-	.equ POS_MARCO_TELE_X, 87
-	.equ POS_MARCO_TELE_Y, 16
-
+	// FONDO, 0x6F7BF6
+	// PISO, 0x3133CC
+	// SILLON1, 0xC00303
+	// SILLON2, 0x760202
+	// CASTANO, 0x6C4600
+	// COLORADO, 0xF94B16
+	// RUBIO, 0xE89700
+	// MARCO_TELE, 0x191919 
 
 	.globl main
 
@@ -25,31 +22,37 @@ main:
 	// x0 contiene la direccion base del framebuffer
  	mov x20, x0	// Guarda la dirección base del framebuffer en x20
 	//---------------- CODE HERE ------------------------------------
-
-	movz x10, 0xC7, lsl 16
-	movk x10, 0x1585, lsl 00
+	// NOTA: como todo lo pintamos de un solo color, uso por defecto w7 para
+	// holdear el color de la figura y lo cambio para cada figura con un color
+	// diferente. Creo que estaria bueno mantener esa convencion en todas las
+	// funciones, que el color sea siempre w7. 
+	// FONDO
+	movz x10, 0xC7, lsl 16 // esto es codigo basura del start viejo, habria que
+	movk x10, 0x1585, lsl 00 // modificarlo para guardar el color de fondo
 
 	mov x2, SCREEN_HEIGH         // Y Size
 loop1:
 	mov x1, SCREEN_WIDTH         // X Size
 loop0:
-	stur w6,[x0]  // Colorear el pixel N
+	stur w7,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
 	sub x1,x1,1	   // Decrementar contador X
 	cbnz x1,loop0  // Si no terminó la fila, salto
 	sub x2,x2,1	   // Decrementar contador Y
 	cbnz x2,loop1  // Si no es la última fila, salto
 
-	movz w6, #0x1919
-	movk w6, #0x0019, lsl #16
-	
-	mov x0, POS_MARCO_TELE_X
-	mov x1, POS_MARCO_TELE_Y
-	mov x4, 476
-	mov x5, 252
+
+	// MARCO DE TELE
+	mov x0, 87 // esquina superior izquierda, pos x
+	mov x1, 16 // esquina superior izquierda, pos y
+	mov x2, 476 // ancho
+	mov x3, 252 // alto
+	movz w7, #0x1919, lsl 16 // color
+	movk w7, #0x0019, lsl 00
 	bl hacer_rectangulo
 
-	// Ejemplo de uso de gpios
+	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
+	// dudas)
 	mov x9, GPIO_BASE
 
 	// Atención: se utilizan registros w porque la documentación de broadcom
@@ -75,33 +78,83 @@ InfLoop:
 	b InfLoop
 
 // Funciones
+// PRE: x0 < 640, x1 < 480, x2 < 640 + x0, x3 < 480 + x1, w7 <= 0xFFFFFF
 hacer_rectangulo: //toma x0: esquina sup. izq. x,  x1: esquina sup. izq. y,
-                  //x4: ancho, x5: alto, W10: color
-	lsl x0, x0, #2 //todo * 4 porque nos movemos cada 4 bytes por pixel
-	lsl x4, x4, #2
+                  //x2: ancho, x3: alto, w7: color
+	lsl x0, x0, #2 //todo * 2^2 (4) porque nos movemos cada 4 bytes por pixel
+	lsl x2, x2, #2 // hacer mul con un registro que tenga el #4 es equivalente,
+				   // yo uso lsl porque mul no toma numeros sueltos
 	mov x10, 2560 // 640 * 4, solo se puede multiplicar con registros :(
-	mul x1, x1, x10 // las alturas son como recorrer una "fila completa", no se //16*4*640
-	add x1, x1, x20 // xd + ps
-	mul x5, x5, x10 // puede hacer de otra forma porque la pantalla es lineal   //250*4*640
-	add x4, x0, x4 // el largo y ancho dependen del punto de partida
-	add x5, x1, x5 // ahora tratamos x4 y x5 como los pixeles limite de dibujo  // 266*xd +
+	mul x1, x1, x10 // las alturas son como recorrer una fila completa,
+	mul x3, x3, x10 // por eso el 640
+	add x1, x1, x20 // A la altura le sumo el inicio del framebuffer
+	add x2, x0, x2 // el largo y ancho dependen del punto de partida
+	add x3, x1, x3 // ahora tratamos x2 y x3 como los pixeles limite de dibujo 
 	mov x12, x1 //hago un contador de filas para poder ir saltando hacia abajo
 loop1_hr:
-	cmp x12, x5  //si llegamos a la fila limite, cortamos
-	b.eq fin_hacer_rectangulo
+	cmp x12, x3  //si llegamos a la fila limite, cortamos
+	b.eq fin_hr
+	// NOTA: ahora usamos x1 como nuestro puntero, no es mas la pos y
 	add x1, x0, x12 // para saltar, vamos al comienzo de la fila y sumamos x0
-	add x11, x4, x12 // nuevo punto de llegada: pixel destino de la columna mas n filas
-	add x12, x12, 2560 // sumamos 640*4 posiciones de registro y tenemos el
-	                   // pixel de la fila de abajo. Esto solo afecta a la
-					   // siguiente vuelt del bucle
+	add x11, x2, x12 // seteamos el limite de dibujo en la fila:
+					 // posicion x limite mas "y" filas dibujadas
+	add x12, x12, 2560 // una vez hechos los calculos, bajamos una fila.
+					   // Esto solo afecta a la siguiente vuelta del bucle
 loop2_hr:
 	cmp x1, x11
 	b.eq loop1_hr // si llegamos al pixel largo limite, volvemos a sumar fila
-	stur w6, [x1] //pintamos
+	stur w7, [x1] //pintamos
 	add x1, x1, 4 //vamos al pixel siguiente	
 	b loop2_hr 
-fin_hacer_rectangulo:
+fin:
 	ret
+
+// PRE: x0 < 640, x1 < 480, x2 < 640 + x0, x3 < 480 + x1, w7 <= 0xFFFFFF
+// NOTA: para no buscar toda la pantalla, por eficiencia decidi que es mejor
+// buscar solo en el cuadrado en donde esta el circulo, y por eso dibujo a
+// partir de la esquina superior izquierda. Para calculrla dado un centro 
+// (x, y) y un radio r, la esquina superior se calcula como (x - r, y - r)
+// EN CONSTRUCCION
+hacer_circulo: // toma x0: esq. sup. x,  x1: esq. sup. y, x2: radio, w7: color
+	lsl x0, x0, #2
+	lsl x2, x2, #2
+	mov x9, 2560
+	mul x1, x1, x9 
+	add x10, x1, x20
+	add x11, x0, x10 // esq. sup. izq en el frame
+	add x12, x0, x2 // x12 va a ser el centro del circulo, le cargamos
+	                // (x - r) * 4 + r * 4 = x * 4, obteniendo la posicion
+					// en x de nuestro centro
+	mul x13, x2, x9 // calculo auxiliar: x11 = radio * 2560
+	add x13, x10, x13 // x13 = (y - r) * 2560  + r * 2560 = y * 2560 + X20,
+	                 // obtenemos la posicion del centro y en el frame
+	add x12, x12, x13 // x10 = (x + y * 640) * 4 + X20
+	                  // obteniendo la posicion del centro (x, y) en el frame
+	lsl x13, x2, #1 // para el alto del cuadrado, guardamos el diametro (2r) en x13
+	mul x14, x13, 2560 
+	add x14, x10, x14 
+	mov x15, x10 
+loop1_hc:
+	cmp x15, x14 
+	b.eq fin
+	add x3, x0, x15
+	add x4, x2, x15
+	add x15, x15, 2560 
+loop2_hc:
+	cmp x3, x4
+	b.eq loop1_hc
+	// x^2+y^2 = r. y = +-sqrt(r^2 - x^2), idem x
+	sub x5, x5, X20 //obtenemos la posicion limpia, sin framebuffer
+	sub x6, x5, x12 // obtenemos la posicion del centro en y.
+	mov x7, 640
+	udiv x6, x6, x7
+
 	
+
+	stur w7, [x3] //pintamos
+	add x3, x3, 4 //vamos al pixel siguiente	
+	b loop2_hc 
+
+
 
 
