@@ -167,6 +167,8 @@ hacer_circulo: // toma x0: centro x,  x1: centro y, x2: radio, w7: color
 	b .loop_hc
 
 .ret:
+	lsr x0, x0, #2
+	lsr x1, x1, #2
 	ret
 
 
