@@ -19,6 +19,7 @@
 	.globl main
 	.globl hacer_rectangulo		// .globl Hace que las funciones puedan ser accedidas
 								// desde otros codigos (lo uso en writeodc.s)
+	.extern drawO
 
 main:
 	// x0 contiene la direccion base del framebuffer
@@ -62,6 +63,14 @@ loop0:
     movz w7, #0x00FF, lsl 16 // color
 	movk w7, #0xFFFF, lsl 00	
 	bl hacer_circulo
+
+	mov x0, 100	//esq pos x
+	mov x1, 400	//esq pos y
+	mov x2, 10	//ancho DEBERIA SER SOBREESCRITO
+	mov x3, 100	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawO
 
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
 	// dudas)
