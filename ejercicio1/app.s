@@ -125,7 +125,7 @@ hacer_rectangulo: //toma x0: esquina sup. izq. x,  x1: esquina sup. izq. y,
 	mov x12, x1 //hago un contador de filas para poder ir saltando hacia abajo
 .loop1_hr:
 	cmp x12, x3  //si llegamos a la fila limite, cortamos
-	b.eq .ret
+	b.eq .ret_hr
 	// NOTA: ahora usamos x1 como nuestro puntero, no es mas la pos y
 	add x1, x0, x12 // para saltar, vamos al comienzo de la fila y sumamos x0
 	add x11, x2, x12 // seteamos el limite de dibujo en la fila:
@@ -138,6 +138,11 @@ hacer_rectangulo: //toma x0: esquina sup. izq. x,  x1: esquina sup. izq. y,
 	stur w7, [x1] //pintamos
 	add x1, x1, 4 //vamos al pixel siguiente	
 	b .loop2_hr
+
+.ret_hr:
+	lsr x0, x0, #2
+	sdiv x1, x1, 2560
+	ret
 
 // PRE: x0 < 640, x1 < 480, x2 < 640 + x0, x3 < 480 + x1, w7 <= 0xFFFFFF
 // buscamos en toda la pantalla porque, a diferencia del rectangulo que
@@ -161,7 +166,7 @@ hacer_circulo: // toma x0: centro x,  x1: centro y, x2: radio, w7: color
 
 .loop_hc:
 	cmp x5, x6
-	b.eq .ret
+	b.eq .ret_hc
 	sub x9, x5, X20 //obtenemos la posicion limpia, sin framebuffer, (y*640)+x
 	sdiv x10, x9, x3     // obtenemos nuestra posicion en y: y + x/2560
 	msub x11, x10, x3, x9 // obtenemos nuestra posicion en x = (y*2560)+x*4-y*640*4
@@ -179,7 +184,7 @@ hacer_circulo: // toma x0: centro x,  x1: centro y, x2: radio, w7: color
 	add x5, x5, 4 //vamos al pixel siguiente	
 	b .loop_hc
 
-.ret:
+.ret_hc:
 	lsr x0, x0, #2
 	lsr x1, x1, #2
 	ret
