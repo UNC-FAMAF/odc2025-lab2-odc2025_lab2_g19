@@ -17,6 +17,9 @@
 	// MARCO_TELE, 0x191919 
 
 	.globl main
+	.globl hacer_rectangulo		// .globl Hace que las funciones puedan ser accedidas
+								// desde otros codigos (lo uso en writeodc.s)
+	.extern drawO
 
 main:
 	// x0 contiene la direccion base del framebuffer
@@ -35,6 +38,8 @@ main:
 loop1:
 	mov x1, SCREEN_WIDTH         // X Size
 loop0:
+	movz w7, #0x0000, lsl 16 // color
+	movk w7, #0x0000, lsl 00
 	stur w7,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
 	sub x1,x1,1	   // Decrementar contador X
@@ -56,8 +61,16 @@ loop0:
     mov x1, #240        // center y
     mov x2, #50         // radius
     movz w7, #0x00FF, lsl 16 // color
-	movk w7, #0xFFFF, lsl 00
+	movk w7, #0xFFFF, lsl 00	
 	bl hacer_circulo
+
+	mov x0, 100	//esq pos x
+	mov x1, 400	//esq pos y
+	mov x2, 10	//ancho DEBERIA SER SOBREESCRITO
+	mov x3, 100	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawO
 
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
 	// dudas)
