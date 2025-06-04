@@ -116,35 +116,34 @@ hacer_rectangulo: //toma x0: esquina sup. izq. x,  x1: esquina sup. izq. y,
 	lsl x0, x0, #2 //todo * 2^2 (4) porque nos movemos cada 4 bytes por pixel
 	lsl x2, x2, #2 // hacer mul con un registro que tenga el #4 es equivalente,
 				   // yo uso lsl porque mul no toma numeros sueltos.
-	mov x10, 2560 // 640 * 4, solo se puede multiplicar con registros :(. Esa es la escala de la altura, por cierto.
-	mul x1, x1, x10 // las alturas son como recorrer una fila completa,
-	mul x3, x3, x10 // por eso el 640
-	add x1, x1, x20 // A la altura le sumo el inicio del framebuffer
+	mov x12, 2560 // 640 * 4, solo se puede multiplicar con registros :(. Esa es la escala de la altura, por cierto.
+	mul x10, x1, x12 // las alturas son como recorrer una fila completa,
+	mul x3, x3, x12 // por eso el 640
+	add x10, x10, x20 // A la altura le sumo el inicio del framebuffer
 	add x2, x0, x2 // el largo y ancho dependen del punto de partida
-	add x3, x1, x3 // ahora tratamos x2 y x3 como los pixeles limite de dibujo 
-	mov x12, x1 //hago un contador de filas para poder ir saltando hacia abajo
+	add x3, x10, x3 // ahora tratamos x2 y x3 como los pixeles limite de dibujo 
+	mov x12, x10 //hago un contador de filas para poder ir saltando hacia abajo
 .loop1_hr:
 	cmp x12, x3  //si llegamos a la fila limite, cortamos
 	b.eq .ret_hr
 	// NOTA: ahora usamos x1 como nuestro puntero, no es mas la pos y
-	add x1, x0, x12 // para saltar, vamos al comienzo de la fila y sumamos x0
+	add x10, x0, x12 // para saltar, vamos al comienzo de la fila y sumamos x0
 	add x11, x2, x12 // seteamos el limite de dibujo en la fila:
 					 // posicion x limite mas "y" filas dibujadas
 	add x12, x12, 2560 // una vez hechos los calculos, bajamos una fila.
 					   // Esto solo afecta a la siguiente vuelta del bucle
 .loop2_hr:
-	cmp x1, x11
+	cmp x10, x11
 	b.eq .loop1_hr // si llegamos al pixel largo limite, volvemos a sumar fila
-	stur w7, [x1] //pintamos
-	add x1, x1, 4 //vamos al pixel siguiente	
+	stur w7, [x10] //pintamos
+	add x10, x10, 4 //vamos al pixel siguiente	
 	b .loop2_hr
 
 .ret_hr:
 	lsr x0, x0, #2
-	sdiv x1, x1, x10
 	ret
 
-// PRE: x0 < 640, x1 < 480, x2 < 640 + x0, x3 < 480 + x1, w7 <= 0xFFFFFF
+// PRE: x01 < 640, x1 < 480, x2 < 640 + x0, x3 < 480 + x1, w7 <= 0xFFFFFF
 // buscamos en toda la pantalla porque, a diferencia del rectangulo que
 // no hay diferencia entre buscar en toda la pantalla y pintar el limite
 // o buscar en los limites y pintar, en el circulo las condiciones de
