@@ -45,7 +45,12 @@ drawO:
     udiv x11, x11, x10 //x11 = (tam-25%)/2    
 
     sub x0, x0, x11 //centro_x = punta superior izquierda
-    
+
+
+    //AJUSTE--- MEJORO UN POCO LA PROPORCION DE LA O
+    sub x3, x3, x4
+
+
     bl hacer_rectangulo
 
     //Volver a los valores iniciales
@@ -60,9 +65,61 @@ drawO:
     mul x4, x3, x9
     udiv x4, x4, x10
 
-    //volver a calcular x2, esta vez, 85%
+    //QUEREMOS QUE X3 SEA EL 85% DE LO QUE ERA ANTES, O SEA, EL ALTO DEL RECT HORZ
+    //SEA EL 85% DE ALTO DEL VERTICAL 
+
     mov x2, x3
     sub x2, x2, x4
     sub x2, x2, x4
+    sub x2, x2, x4 // x2 = ancho
+
+    mov x3, x2 // también usamos el mismo para alto
+    sub x3, x3, x4
+    sub x3, x3, x4
+
+    // Recalcular esquina superior izquierda
+    mov x9, x2
+    mov x10, #2
+    udiv x9, x9, x10
+    sub x0, x0, x9
+
+    udiv x9, x3, x10
+    sub x1, x1, x9
+    
+    bl hacer_rectangulo
+
+    //Volver a los valores iniciales
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23
+    
+	movz w7, #0x0019, lsl 16 // color del tele
+	movk w7, #0x1919, lsl 00
+
+    //hacer rectangulo en el medio
+    mov x9, #5
+    mov x10, #100
+    mul x4, x3, x9
+    udiv x4, x4, x10
+    //x2 el ancho del rect interior 60% x3
+    mov x9, #60
+    mul x2, x3, x9
+    udiv x2, x2, x10 
+
+    //x3 el alto del rectangulo interior 65% x3
+    mov x9, #65
+    mul x3, x3, x9
+    udiv x3, x3, x10
+
+    //mover el centro (x) a la esq sup izq
+    mov x9, x2
+    mov x10, #2
+    udiv x9, x9, x10
+    sub x0, x0, x9 
+
+    //mover el centro (y) a la esq sup izq
+    mov x9, x3
+    udiv x9, x9, x10
+    sub x1, x1, x9
 
     bl hacer_rectangulo
