@@ -38,8 +38,8 @@ main:
 loop1:
 	mov x1, SCREEN_WIDTH         // X Size
 loop0:
-	movz w7, #0x0000, lsl 16 // color
-	movk w7, #0x0000, lsl 00
+	movz w7, #0x006F, lsl 16 // color
+	movk w7, #0x7BF6, lsl 00
 	stur w7,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
 	sub x1,x1,1	   // Decrementar contador X
@@ -64,12 +64,12 @@ loop0:
 	movk w7, #0xFFFF, lsl 00	
 	bl hacer_circulo
 
-	mov x0, 100	//esq pos x
-	mov x1, 400	//esq pos y
+	mov x0, 87	//esq pos x
+	mov x1, 16	//esq pos y
 	mov x2, 10	//ancho DEBERIA SER SOBREESCRITO
-	mov x3, 100	//alto
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
+	mov x3, 50	//alto
+	movz w7, #0x00FE, lsl 16
+	movk w7, #0xFEFE, lsl 00
 	bl drawO
 
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 

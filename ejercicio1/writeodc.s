@@ -25,6 +25,8 @@ drawO:
     udiv x4, x4, x10 //x4 = 5% de tam
 
     mov x2, x3
+    sub x2, x2, x4  //x2 (ancho) = 75% X3
+    sub x2, x2, x4
     sub x2, x2, x4
     sub x2, x2, x4
     sub x2, x2, x4 //kjjjjjjj
@@ -36,5 +38,13 @@ drawO:
     udiv x9, x9, x10 //x9 = tam/2
 
     sub x1, x1, x9  //c_y = borde superior, ya que el centro seria una posicion en y y le reste tam/2
+
+    mov x11, x2
+    udiv x11, x11, x10 //x9 = (tam-25%)/2    
+
+    sub x0, x0, x11
     
     bl hacer_rectangulo
+
+    add x0, x0, x11
+    add x1, x1, x9
