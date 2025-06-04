@@ -17,7 +17,9 @@ drawO:
     //Dimensiones 
     //Rectangulo horizontal: [85% Y, 80% Y] 
     //Rectangulo vertical: [75% Y, Y]
-
+    mov x21, x0
+    mov x22, x1
+    mov x23, x3
     mov x9, #5
     mov x10, #100
     
@@ -37,14 +39,30 @@ drawO:
     mov x10, #2
     udiv x9, x9, x10 //x9 = tam/2
 
-    sub x1, x1, x9  //c_y = borde superior, ya que el centro seria una posicion en y y le reste tam/2
+    sub x1, x1, x9  //centro_y = borde superior, ya que el centro seria una posicion en y y le reste tam/2
 
     mov x11, x2
-    udiv x11, x11, x10 //x9 = (tam-25%)/2    
+    udiv x11, x11, x10 //x11 = (tam-25%)/2    
 
-    sub x0, x0, x11
+    sub x0, x0, x11 //centro_x = punta superior izquierda
     
     bl hacer_rectangulo
 
-    add x0, x0, x11
-    add x1, x1, x9
+    //Volver a los valores iniciales
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23
+
+    //volver a calcular x4 por las dudas
+    mov x9, #5
+    mov x10, #100
+    
+    mul x4, x3, x9
+    udiv x4, x4, x10
+
+    //volver a calcular x2, esta vez, 85%
+    mov x2, x3
+    sub x2, x2, x4
+    sub x2, x2, x4
+
+    bl hacer_rectangulo
