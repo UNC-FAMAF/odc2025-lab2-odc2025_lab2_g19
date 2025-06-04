@@ -13,56 +13,56 @@ LOAD start.o
 LOAD writeodc.o
                 0x0000000000080000                . = 0x80000
 
-.text           0x0000000000080000    0x90258
+.text           0x0000000000080000    0x90288
  *(.text.boot)
  .text.boot     0x0000000000080000    0x100c8 start.o
                 0x0000000000080000                _start
  *(.text*)
- .text          0x00000000000900c8      0x160 app.o
+ .text          0x00000000000900c8      0x170 app.o
                 0x00000000000900c8                main
                 0x0000000000090164                hacer_rectangulo
- .text          0x0000000000090228    0x80000 start.o
- .text          0x0000000000110228       0x30 writeodc.o
-                0x0000000000110228                drawO
+ .text          0x0000000000090238    0x80000 start.o
+ .text          0x0000000000110238       0x50 writeodc.o
+                0x0000000000110238                drawO
 
-.iplt           0x0000000000110258        0x0
- .iplt          0x0000000000110258        0x0 app.o
+.iplt           0x0000000000110288        0x0
+ .iplt          0x0000000000110288        0x0 app.o
 
-.rela.dyn       0x0000000000110258        0x0
- .rela.iplt     0x0000000000110258        0x0 app.o
+.rela.dyn       0x0000000000110288        0x0
+ .rela.iplt     0x0000000000110288        0x0 app.o
  .rela.text.boot
-                0x0000000000110258        0x0 app.o
+                0x0000000000110288        0x0 app.o
 
-.data           0x0000000000110258        0x0
- .data          0x0000000000110258        0x0 app.o
- .data          0x0000000000110258        0x0 start.o
- .data          0x0000000000110258        0x0 writeodc.o
+.data           0x0000000000110288        0x0
+ .data          0x0000000000110288        0x0 app.o
+ .data          0x0000000000110288        0x0 start.o
+ .data          0x0000000000110288        0x0 writeodc.o
 
-.igot.plt       0x0000000000110258        0x0
- .igot.plt      0x0000000000110258        0x0 app.o
+.igot.plt       0x0000000000110288        0x0
+ .igot.plt      0x0000000000110288        0x0 app.o
 
-.bss            0x0000000000110258        0x0
+.bss            0x0000000000110288        0x0
  *(.bss*)
- .bss           0x0000000000110258        0x0 app.o
- .bss           0x0000000000110258        0x0 start.o
- .bss           0x0000000000110258        0x0 writeodc.o
+ .bss           0x0000000000110288        0x0 app.o
+ .bss           0x0000000000110288        0x0 start.o
+ .bss           0x0000000000110288        0x0 writeodc.o
 
-.bss            0x0000000000110258        0x8
-                0x0000000000110260                . = ALIGN (0x10)
- *fill*         0x0000000000110258        0x8 
-                0x0000000000110260                __bss_start = .
+.bss            0x0000000000110288        0x8
+                0x0000000000110290                . = ALIGN (0x10)
+ *fill*         0x0000000000110288        0x8 
+                0x0000000000110290                __bss_start = .
  *(.bss .bss.*)
  *(COMMON)
-                0x0000000000110260                __bss_end = .
-                0x0000000000110260                _end = .
+                0x0000000000110290                __bss_end = .
+                0x0000000000110290                _end = .
                 0x0000000000000000                __bss_size = ((__bss_end - __bss_start) >> 0x3)
 OUTPUT(kernel8.elf elf64-littleaarch64)
 LOAD linker stubs
 
-.debug_line     0x0000000000000000      0x127
- .debug_line    0x0000000000000000       0x91 app.o
- .debug_line    0x0000000000000091       0x50 start.o
- .debug_line    0x00000000000000e1       0x46 writeodc.o
+.debug_line     0x0000000000000000      0x133
+ .debug_line    0x0000000000000000       0x95 app.o
+ .debug_line    0x0000000000000095       0x50 start.o
+ .debug_line    0x00000000000000e5       0x4e writeodc.o
 
 .debug_info     0x0000000000000000       0x8a
  .debug_info    0x0000000000000000       0x2e app.o
