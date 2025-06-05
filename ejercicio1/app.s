@@ -15,11 +15,15 @@
 	// COLORADO, 0xF94B16
 	// RUBIO, 0xE89700
 	// MARCO_TELE, 0x191919 
+	//AUTITO
 
 	.globl main
 	.globl hacer_rectangulo		// .globl Hace que las funciones puedan ser accedidas
 								// desde otros codigos (lo uso en writeodc.s)
+	.globl hacer_circulo
 	.extern drawO
+	.extern drawD
+	.extern detailC
 
 main:
 	// x0 contiene la direccion base del framebuffer
@@ -57,6 +61,7 @@ loop0:
 	movk w7, #0x1919, lsl 00
 	bl hacer_rectangulo
 
+	//CABEZA
 	mov x0, #320        // center x
     mov x1, #240        // center y
     mov x2, #50         // radius
@@ -64,13 +69,50 @@ loop0:
 	movk w7, #0xFFFF, lsl 00	
 	bl hacer_circulo
 
-	mov x0, 87	//esq pos x
-	mov x1, 16	//esq pos y
-	mov x2, 10	//ancho DEBERIA SER SOBREESCRITO
+	// O-DC2025
+	mov x0, 130	//centro x
+	mov x1, 170	//centro y
 	mov x3, 50	//alto
-	movz w7, #0x00FE, lsl 16
-	movk w7, #0xFEFE, lsl 00
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
 	bl drawO
+	//O interna
+	mov x0, 130	//centro x
+	mov x1, 170	//centro y
+	mov x3, 35	//alto
+	movz w7, #0x0019, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl drawO
+
+	//O-D-C2025
+	mov x0, 185	//centro x
+	mov x1, 170	//centro y
+	mov x3, 50	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawD
+	//D interna
+	mov x0, 185	//centro x
+	mov x1, 170	//centro y
+	mov x3, 35	//alto
+	movz w7, #0x0019, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl drawD
+
+
+	// OD-C-2025
+	mov x0, 240	//centro x
+	mov x1, 170	//centro y
+	mov x3, 50	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawO
+	mov x0, 240	//centro x
+	mov x1, 170	//centro y
+	mov x3, 35	//alto
+	movz w7, #0x0019, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl detailC
 
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
 	// dudas)
