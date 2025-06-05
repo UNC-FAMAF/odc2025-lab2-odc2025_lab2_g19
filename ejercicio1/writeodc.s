@@ -7,8 +7,14 @@
     .extern hacer_rectangulo    //.extern se "complementa" con .globl
                                 // trae la etiqueta desde un codigo, 
                                 // tiene que ser globl en el archivo que lo contiene
+    .extern hacer_circulo
     .globl drawO
+
 drawO:    
+    //chatgpt agency, como hago muchos bl se pierde el valor de x30 (ret). 
+    //asi que lo guardo en el stack y leeesto ya foeee
+    stp x29, x30, [sp, #-16]!
+
     // X0 centro en x 
     // X1 centro en y
     // X3 Tamaño (en Y), tamaño en X (X2) es fixed 85% el tamaño en y (dios me bendiga haciendolo)
@@ -17,12 +23,14 @@ drawO:
     //Dimensiones 
     //Rectangulo horizontal: [85% Y, 80% Y] 
     //Rectangulo vertical: [75% Y, Y]
+
+    //Guardo los valores iniciales
     mov x21, x0
     mov x22, x1
     mov x23, x3
+
     mov x9, #5
     mov x10, #100
-    
     mul x4, x3, x9
     udiv x4, x4, x10 //x4 = 5% de tam
 
@@ -93,8 +101,8 @@ drawO:
     mov x1, x22
     mov x3, x23
     
-	movz w7, #0x0019, lsl 16 // color del tele
-	movk w7, #0x1919, lsl 00
+	movz w7, #0x00FF, lsl 16 // color del tele
+	movk w7, #0xFFFF, lsl 00
 
     //hacer rectangulo en el medio
     mov x9, #5
@@ -123,3 +131,84 @@ drawO:
     sub x1, x1, x9
 
     bl hacer_rectangulo
+
+    ldp x29, x30, [sp], #16 //Restaurar para hacer el ret como la gente
+    ret
+
+.globl drawD
+drawD:
+    stp x29, x30, [sp, #-16]!
+
+    //guardo los valores iniciales
+    mov x21, x0
+    mov x22, x1
+    mov x23, x3
+
+
+    // Muevo el centro en y de la o a la esquina superior izquerda del rectangulo parado (seria 5%
+    // del ancho de la figura)
+    mov x9, x3
+    mov x10, #2
+    udiv x9, x9, x10 //x9 = tam/2
+
+    sub x1, x1, x9  //centro_y = borde superior, ya que el centro seria una posicion en y y le reste tam/2
+
+    sub x0, x0, x9 //centro_x = punta superior izquierda
+
+    //me faltaba definir el ancho, lo voy a hacer que sea x3 * 6/8 
+    mov x2, x3
+    mov x9, 6
+    mul x2, x2, x9
+    mov x10, 8
+    udiv x2, x2, x10
+    bl hacer_rectangulo
+
+    //Volver a los valores iniciales
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23     // x3= alto
+    
+    mov x10, #2
+    udiv x2, x2, x10
+
+    bl hacer_rectangulo
+
+    ; //Volver a los valores iniciales
+    ; mov x0, x21
+    ; mov x1, x22
+    ; mov x3, x23
+    
+	; movz w7, #0x0019, lsl 16 // color del tele
+	; movk w7, #0x1919, lsl 00
+
+    ; //hacer rectangulo en el medio
+    ; mov x9, #5
+    ; mov x10, #100
+    ; mul x4, x3, x9
+    ; udiv x4, x4, x10
+    ; //x2 el ancho del rect interior 60% x3
+    ; mov x9, #60
+    ; mul x2, x3, x9
+    ; udiv x2, x2, x10 
+
+    ; //x3 el alto del rectangulo interior 65% x3
+    ; mov x9, #65
+    ; mul x3, x3, x9
+    ; udiv x3, x3, x10
+
+    ; //mover el centro (x) a la esq sup izq
+    ; mov x9, x2
+    ; mov x10, #2
+    ; udiv x9, x9, x10
+    ; sub x0, x0, x9 
+
+    ; //mover el centro (y) a la esq sup izq
+    ; mov x9, x3
+    ; udiv x9, x9, x10
+    ; sub x1, x1, x9
+
+    ; bl hacer_rectangulo
+
+    ldp x29, x30, [sp], #16
+    ret
+
