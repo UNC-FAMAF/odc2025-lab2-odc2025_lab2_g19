@@ -24,6 +24,7 @@
 	.extern drawO
 	.extern drawD
 	.extern detailC
+	.extern drawcero
 	.extern drawcinco
 
 main:
@@ -153,8 +154,17 @@ loop0:
 	movk w7, #0xFFFF, lsl 00
 	bl drawdos
 
-	// ODC 202-5
+	// ODC2-0-25
 	mov x0, 350	//centro x
+	mov x1, 170	//centro y
+	mov x3, 50	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawcero
+
+
+	// ODC 202-5
+	mov x0, 500	//centro x
 	mov x1, 170	//centro y
 	mov x3, 50	//alto
 	movz w7, #0x00FF, lsl 16

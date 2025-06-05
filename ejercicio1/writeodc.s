@@ -13,6 +13,7 @@
     .globl detailC
     .globl drawdos
     .globl drawcinco
+    .globl drawcero
 
 
 drawO:    
@@ -310,6 +311,81 @@ drawdos:
     ldp x29, x30, [sp], #16
     ret
 
+drawcero:
+
+    stp x29, x30, [sp, #-16]!
+
+    //Guardo los valores iniciales
+    mov x21, x0
+    mov x22, x1
+    mov x23, x3
+
+    //----------------------------------------
+    //         RECTANGULO VERTICAL
+    //----------------------------------------
+
+    mov x9, 35
+    mov x10, 100
+    mul x4, x3, x9
+    udiv x4, x4, x10 //x4 = 5% de tam
+
+    mov x2, x3
+    sub x2, x2, x4  //x2 (ancho) = 70% X3
+
+    // Muevo el centro en y de la o a la esquina superior izquerda del rectangulo parado (seria 5%
+    // del ancho de la figura)
+    mov x9, x3
+    mov x10, #2
+    udiv x9, x9, x10 //x9 = tam/2
+
+    sub x1, x1, x9  //centro_y = borde superior, ya que el centro seria una posicion en y y le reste tam/2
+
+    mov x11, x2
+    udiv x11, x11, x10 //x11 = (tam-25%)/2    
+
+    sub x0, x0, x11 //centro_x = punta superior izquierda
+
+    bl hacer_rectangulo
+
+    //----------------------------------------
+    //         RECTANGULO HORIZONTAL
+    //----------------------------------------
+    //Volver a los valores iniciales
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23
+
+
+    mov x9, 10
+    mov x10, 100
+    
+    mul x4, x3, x9
+    udiv x4, x4, x10
+
+    //QUEREMOS QUE X3 SEA EL 85% DE LO QUE ERA ANTES, O SEA, EL ALTO DEL RECT HORZ
+    //SEA EL 85% DE ALTO DEL VERTICAL 
+
+    mov x2, x3
+    sub x2, x2, x4
+
+
+    mov x3, x2 // x3 = x2
+
+
+    // Recalcular esquina superior izquierda
+    mov x9, x2
+    mov x10, #2
+    udiv x9, x9, x10
+    sub x0, x0, x9
+
+    udiv x9, x3, x10
+    sub x1, x1, x9
+    
+    // bl hacer_rectangulo
+
+    ldp x29, x30, [sp], #16 //Restaurar para hacer el ret como la gente
+    ret
+
 drawcinco:
 
     stp x29, x30, [sp, #-16]!
@@ -370,7 +446,7 @@ drawcinco:
     udiv x3, x3, x9 //x3 = 1/5 (x3)
 
     //muevo x0
-    mov x9, 1
+    mov x9, 3
     mul x9, x2, x9
     mov x10, 4
     udiv x9, x9, x10
@@ -406,7 +482,7 @@ drawcinco:
     udiv x3, x3, x9 //x3 = 1/5 (x3)
 
     //muevo x0
-    mov x9, 5
+    mov x9, 2
     mul x9, x2, x9
     mov x10, 7
     udiv x9, x9, x10
@@ -417,3 +493,4 @@ drawcinco:
 
     ldp x29, x30, [sp], #16
     ret
+
