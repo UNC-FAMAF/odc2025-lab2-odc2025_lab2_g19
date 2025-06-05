@@ -100,6 +100,23 @@ loop0:
 	movk w7, #0x9700, lsl 00	
 	bl hacer_circulo
 
+//CIRCULO IZQUIERDO DE RADIO 14
+	mov x0, #106
+	mov x1, #330
+	mov x2, #14
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_circulo
+
+	//Cuerpo del sillón
+	mov x0, #106
+	mov x1, #316
+	mov x2, #443
+	mov x3, #139
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_rectangulo
+
 	// O-DC2025
 	mov x0, 130	//centro x
 	mov x1, 170	//centro y
