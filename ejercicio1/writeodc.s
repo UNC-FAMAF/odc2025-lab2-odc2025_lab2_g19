@@ -14,6 +14,7 @@
     .globl drawdos
     .globl drawcinco
     .globl drawcero
+    .globl drawODC
 
 
 drawO:    
@@ -483,3 +484,119 @@ drawcinco:
     ldp x29, x30, [sp], #16
     ret
 
+drawODC:
+    // etiqueta que calcula los centros para todas las etiquetas drawO etc. etc.
+    // dado un tamaño x3, sabemos que cada letra ocupa a lo sumo x3/2 para la derecha y a la izquierda
+    // casos que no son la o y el 0. Asi que nada.
+
+    // Esta etiqueta toma x0 como la coordenada en x de esquina superior izquerda del texto
+    // x1 como la coordenada en y de la esquina superior izquierda del texto
+    // x3 tamaño del cual se calculan todas las letras, es decir, si x3 esta compuesto por 7 caracteres
+    // con ancho x3, entonces drawODC ocupara 7*x3
+    // w7 el color del cual se pintara el texto
+
+    //usare los temporales x25, x27 y w28 para guardar los valores de x0, x3, w7 respectivamente
+    stp x29, x30, [sp, #-16]!
+
+    mov x25, x0
+    mov x27, x3
+    mov w28, w7
+
+    //se usara x26 como la constante posicion en y, ya que el texto esta alineado
+    mov x9, 2
+    udiv x26, x1, x9
+
+    //Se tiene que el ancho de la O es 85% x3
+    // asi que, el centro es 85% / 2
+    mov x12, 85
+    mul x0, x3, x12
+    mov x12, 100
+    udiv x0, x0, x12
+    udiv x0, x0, x9
+    // O-DC2025
+	mov x0, x12	//centro x
+	mov x1, x26	//centro y
+	mov x3, x27	//alto
+	mov w7, w28
+	bl drawO
+	//O interna
+	mov x0, x12	//centro x
+	mov x1, x26	//centro y
+    
+	mov x3, 12	//quiero que el hueco sea 2/3 partes del primero
+	movz w7, #0x0019, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl drawO
+
+	//O-D-C2025
+	mov x0, 185	//centro x
+	mov x1, x26	//centro y
+	mov x3, 20	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawD
+	//D interna
+	mov x0, 185	//centro x
+	mov x1, x26	//centro y
+	mov x3, 12	//alto
+	movz w7, #0x0019, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl drawD
+
+
+	// OD-C-2025
+	mov x0, 240	//centro x
+	mov x1, x26	//centro y
+	mov x3, 20	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawO
+	mov x0, 240	//centro x
+	mov x1, x26	//centro y
+	mov x3, 12	//alto
+	movz w7, #0x0019, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl detailC
+
+
+	// ODC-2-025
+	mov x0, 290	//centro x
+	mov x1, x26	//centro y
+	mov x3, 20	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawdos
+
+	// ODC2-0-25
+	mov x0, 340	//centro x
+	mov x1, x26	//centro y
+	mov x3, 20	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawcero
+	// HUECO
+	mov x0, 340	//centro x
+	mov x1, x26	//centro y
+	mov x3, 12	//alto
+	movz w7, #0x0019, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl drawcero
+
+	// ODC20-2-5
+	mov x0, 390	//centro x
+	mov x1, x26	//centro y
+	mov x3, 20	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawdos
+
+	// ODC 202-5
+	mov x0, 440	//centro x
+	mov x1, x26	//centro y
+	mov x3, 20	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawcinco
+
+    ldp x29, x30, [sp], #16 //Restaurar x30
+    ret
