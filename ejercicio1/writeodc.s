@@ -101,8 +101,8 @@ drawO:
     mov x1, x22
     mov x3, x23
     
-	movz w7, #0x00FF, lsl 16 // color del tele
-	movk w7, #0xFFFF, lsl 00
+	movz w7, #0x0019, lsl 16 // color del tele
+	movk w7, #0x1919, lsl 00
 
     //hacer rectangulo en el medio
     mov x9, #5
@@ -155,9 +155,9 @@ drawD:
 
     sub x0, x0, x9 //centro_x = punta superior izquierda
 
-    //me faltaba definir el ancho, lo voy a hacer que sea x3 * 6/8 
+    //me faltaba definir el ancho, lo voy a hacer que sea x3 * 7/8 
     mov x2, x3
-    mov x9, 6
+    mov x9, 7
     mul x2, x2, x9
     mov x10, 8
     udiv x2, x2, x10
@@ -166,49 +166,62 @@ drawD:
     //Volver a los valores iniciales
     mov x0, x21
     mov x1, x22
-    mov x3, x23     // x3= alto
-    
-    mov x10, #2
+    mov x3, x23     // x3= Alto
+    mov x2, x3
+
+    mov x9, 75
+    mov x10, 100
+
+    mul x3, x3, x9
+    udiv x3, x3, x10        //x3 ahora es el 65% de lo que era :p
+
+    mov x10, #2 
     udiv x2, x2, x10
+
+    mov x9, x3
+    udiv x9, x9, x10
+
+    sub x1, x1, x9
 
     bl hacer_rectangulo
 
-    ; //Volver a los valores iniciales
-    ; mov x0, x21
-    ; mov x1, x22
-    ; mov x3, x23
+    //Volver a los valores iniciales
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23
     
-	; movz w7, #0x0019, lsl 16 // color del tele
-	; movk w7, #0x1919, lsl 00
+	movz w7, #0x0019, lsl 16 // color del tele
+	movk w7, #0x1919, lsl 00
 
-    ; //hacer rectangulo en el medio
-    ; mov x9, #5
-    ; mov x10, #100
-    ; mul x4, x3, x9
-    ; udiv x4, x4, x10
-    ; //x2 el ancho del rect interior 60% x3
-    ; mov x9, #60
-    ; mul x2, x3, x9
-    ; udiv x2, x2, x10 
+    //hacer rectangulo en el medio
+    mov x9, #5
+    mov x10, #100
+    mul x4, x3, x9
+    udiv x4, x4, x10
+    //x2 el ancho del rect interior 60% x3
+    mov x9, #60
+    mul x2, x3, x9
+    udiv x2, x2, x10 
 
-    ; //x3 el alto del rectangulo interior 65% x3
-    ; mov x9, #65
-    ; mul x3, x3, x9
-    ; udiv x3, x3, x10
+    //x3 el alto del rectangulo interior 65% x3
+    mov x9, #65
+    mul x3, x3, x9
+    udiv x3, x3, x10
 
-    ; //mover el centro (x) a la esq sup izq
-    ; mov x9, x2
-    ; mov x10, #2
-    ; udiv x9, x9, x10
-    ; sub x0, x0, x9 
+    //mover el centro (x) a la esq sup izq
+    mov x9, x2
+    mov x10, #2
+    udiv x9, x9, x10
+    sub x0, x0, x9 
 
-    ; //mover el centro (y) a la esq sup izq
-    ; mov x9, x3
-    ; udiv x9, x9, x10
-    ; sub x1, x1, x9
+    //mover el centro (y) a la esq sup izq
+    mov x9, x3
+    udiv x9, x9, x10
+    sub x1, x1, x9
 
-    ; bl hacer_rectangulo
+    bl hacer_rectangulo
 
     ldp x29, x30, [sp], #16
+
     ret
 

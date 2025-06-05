@@ -85,7 +85,6 @@ loop0:
 	movk w7, #0x0000, lsl 00
 	bl drawD
 
-	
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
 	// dudas)
 	mov x9, GPIO_BASE

@@ -16451,7 +16451,7 @@ Disassembly of section .text:
 	...
    900a0:	00080000 	.inst	0x00080000 ; undefined
    900a4:	00000000 	udf	#0
-   900a8:	00110420 	.inst	0x00110420 ; undefined
+   900a8:	00110440 	.inst	0x00110440 ; undefined
    900ac:	00000000 	udf	#0
    900b0:	00090008 	.inst	0x00090008 ; undefined
    900b4:	00000000 	udf	#0
@@ -16632,8 +16632,8 @@ Disassembly of section .text:
   110304:	aa1503e0 	mov	x0, x21
   110308:	aa1603e1 	mov	x1, x22
   11030c:	aa1703e3 	mov	x3, x23
-  110310:	52a01fe7 	mov	w7, #0xff0000              	// #16711680
-  110314:	729fffe7 	movk	w7, #0xffff
+  110310:	52a00327 	mov	w7, #0x190000              	// #1638400
+  110314:	72832327 	movk	w7, #0x1919
   110318:	d28000a9 	mov	x9, #0x5                   	// #5
   11031c:	d2800c8a 	mov	x10, #0x64                  	// #100
   110320:	9b097c64 	mul	x4, x3, x9
@@ -16666,7 +16666,7 @@ Disassembly of section .text:
   110384:	cb090021 	sub	x1, x1, x9
   110388:	cb090000 	sub	x0, x0, x9
   11038c:	aa0303e2 	mov	x2, x3
-  110390:	d28000c9 	mov	x9, #0x6                   	// #6
+  110390:	d28000e9 	mov	x9, #0x7                   	// #7
   110394:	9b097c42 	mul	x2, x2, x9
   110398:	d280010a 	mov	x10, #0x8                   	// #8
   11039c:	9aca0842 	udiv	x2, x2, x10
@@ -16674,34 +16674,42 @@ Disassembly of section .text:
   1103a4:	aa1503e0 	mov	x0, x21
   1103a8:	aa1603e1 	mov	x1, x22
   1103ac:	aa1703e3 	mov	x3, x23
-  1103b0:	d280004a 	mov	x10, #0x2                   	// #2
-  1103b4:	9aca0842 	udiv	x2, x2, x10
-  1103b8:	97fdff72 	bl	90180 <hacer_rectangulo>
-  1103bc:	aa1503e0 	mov	x0, x21
-  1103c0:	aa1603e1 	mov	x1, x22
-  1103c4:	aa1703e3 	mov	x3, x23
-  1103c8:	52a00327 	mov	w7, #0x190000              	// #1638400
-  1103cc:	72832327 	movk	w7, #0x1919
-  1103d0:	d28000a9 	mov	x9, #0x5                   	// #5
-  1103d4:	d2800c8a 	mov	x10, #0x64                  	// #100
-  1103d8:	9b097c64 	mul	x4, x3, x9
-  1103dc:	9aca0884 	udiv	x4, x4, x10
-  1103e0:	d2800789 	mov	x9, #0x3c                  	// #60
-  1103e4:	9b097c62 	mul	x2, x3, x9
-  1103e8:	9aca0842 	udiv	x2, x2, x10
-  1103ec:	d2800829 	mov	x9, #0x41                  	// #65
-  1103f0:	9b097c63 	mul	x3, x3, x9
-  1103f4:	9aca0863 	udiv	x3, x3, x10
-  1103f8:	aa0203e9 	mov	x9, x2
-  1103fc:	d280004a 	mov	x10, #0x2                   	// #2
-  110400:	9aca0929 	udiv	x9, x9, x10
-  110404:	cb090000 	sub	x0, x0, x9
-  110408:	aa0303e9 	mov	x9, x3
-  11040c:	9aca0929 	udiv	x9, x9, x10
-  110410:	cb090021 	sub	x1, x1, x9
-  110414:	97fdff5b 	bl	90180 <hacer_rectangulo>
-  110418:	a8c17bfd 	ldp	x29, x30, [sp], #16
-  11041c:	d65f03c0 	ret
+  1103b0:	aa0303e2 	mov	x2, x3
+  1103b4:	d2800969 	mov	x9, #0x4b                  	// #75
+  1103b8:	d2800c8a 	mov	x10, #0x64                  	// #100
+  1103bc:	9b097c63 	mul	x3, x3, x9
+  1103c0:	9aca0863 	udiv	x3, x3, x10
+  1103c4:	d280004a 	mov	x10, #0x2                   	// #2
+  1103c8:	9aca0842 	udiv	x2, x2, x10
+  1103cc:	aa0303e9 	mov	x9, x3
+  1103d0:	9aca0929 	udiv	x9, x9, x10
+  1103d4:	cb090021 	sub	x1, x1, x9
+  1103d8:	97fdff6a 	bl	90180 <hacer_rectangulo>
+  1103dc:	aa1503e0 	mov	x0, x21
+  1103e0:	aa1603e1 	mov	x1, x22
+  1103e4:	aa1703e3 	mov	x3, x23
+  1103e8:	52a00327 	mov	w7, #0x190000              	// #1638400
+  1103ec:	72832327 	movk	w7, #0x1919
+  1103f0:	d28000a9 	mov	x9, #0x5                   	// #5
+  1103f4:	d2800c8a 	mov	x10, #0x64                  	// #100
+  1103f8:	9b097c64 	mul	x4, x3, x9
+  1103fc:	9aca0884 	udiv	x4, x4, x10
+  110400:	d2800789 	mov	x9, #0x3c                  	// #60
+  110404:	9b097c62 	mul	x2, x3, x9
+  110408:	9aca0842 	udiv	x2, x2, x10
+  11040c:	d2800829 	mov	x9, #0x41                  	// #65
+  110410:	9b097c63 	mul	x3, x3, x9
+  110414:	9aca0863 	udiv	x3, x3, x10
+  110418:	aa0203e9 	mov	x9, x2
+  11041c:	d280004a 	mov	x10, #0x2                   	// #2
+  110420:	9aca0929 	udiv	x9, x9, x10
+  110424:	cb090000 	sub	x0, x0, x9
+  110428:	aa0303e9 	mov	x9, x3
+  11042c:	9aca0929 	udiv	x9, x9, x10
+  110430:	cb090021 	sub	x1, x1, x9
+  110434:	97fdff53 	bl	90180 <hacer_rectangulo>
+  110438:	a8c17bfd 	ldp	x29, x30, [sp], #16
+  11043c:	d65f03c0 	ret
 
 Disassembly of section .debug_line:
 
@@ -16728,7 +16736,7 @@ Disassembly of section .debug_line:
   4c:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
   50:	1e1e201e 	.inst	0x1e1e201e ; undefined
   54:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
-  58:	20202322 	.inst	0x20202322 ; undefined
+  58:	20202321 	.inst	0x20202321 ; undefined
   5c:	11032321 	add	w1, w25, #0xc8
   60:	1e1f1e1d 	.inst	0x1e1f1e1d ; undefined
   64:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
@@ -16765,7 +16773,7 @@ Disassembly of section .debug_line:
   e0:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
   e4:	809c021e 	.inst	0x809c021e ; undefined
   e8:	01010001 	.inst	0x01010001 ; undefined
-  ec:	000000ab 	udf	#171
+  ec:	000000b3 	udf	#179
   f0:	001e0002 	.inst	0x001e0002 ; undefined
   f4:	01040000 	.inst	0x01040000 ; undefined
   f8:	000a0efb 	.inst	0x000a0efb ; undefined
@@ -16800,15 +16808,17 @@ Disassembly of section .debug_line:
  16c:	1f1e1e22 	fmadd	s2, s17, s30, s7
  170:	1e1e201f 	.inst	0x1e1e201f ; undefined
  174:	201e1e1e 	.inst	0x201e1e1e ; undefined
- 178:	1e1f1e1e 	.inst	0x1e1f1e1e ; undefined
- 17c:	1e1e201f 	.inst	0x1e1e201f ; undefined
- 180:	1e201e1f 	fcsel	s31, s16, s0, ne	// ne = any
- 184:	1e1f1e1e 	.inst	0x1e1f1e1e ; undefined
- 188:	1e1e201e 	.inst	0x1e1e201e ; undefined
- 18c:	1e1e1e20 	.inst	0x1e1e1e20 ; undefined
- 190:	1f1e1e20 	fmadd	s0, s17, s30, s7
- 194:	01021e1f 	.inst	0x01021e1f ; undefined
- 198:	Address 0x198 is out of bounds.
+ 178:	1f1e1e1e 	fmadd	s30, s16, s30, s7
+ 17c:	1f1e1f1e 	fmadd	s30, s24, s30, s7
+ 180:	1f1e1f1e 	fmadd	s30, s24, s30, s7
+ 184:	1e1e201f 	.inst	0x1e1e201f ; undefined
+ 188:	1e201e1f 	fcsel	s31, s16, s0, ne	// ne = any
+ 18c:	1e1f1e1e 	.inst	0x1e1f1e1e ; undefined
+ 190:	1e1e201e 	.inst	0x1e1e201e ; undefined
+ 194:	1e1e1e20 	.inst	0x1e1e1e20 ; undefined
+ 198:	1f1e1e20 	fmadd	s0, s17, s30, s7
+ 19c:	01021f1f 	.inst	0x01021f1f ; undefined
+ 1a0:	Address 0x1a0 is out of bounds.
 
 
 Disassembly of section .debug_info:
@@ -16842,7 +16852,7 @@ Disassembly of section .debug_info:
   68:	000000ec 	udf	#236
   6c:	00110254 	.inst	0x00110254 ; undefined
   70:	00000000 	udf	#0
-  74:	00110420 	.inst	0x00110420 ; undefined
+  74:	00110440 	.inst	0x00110440 ; undefined
   78:	00000000 	udf	#0
   7c:	00000059 	udf	#89
   80:	00000006 	udf	#6
@@ -16894,7 +16904,7 @@ Disassembly of section .debug_aranges:
   6c:	00000000 	udf	#0
   70:	00110254 	.inst	0x00110254 ; undefined
   74:	00000000 	udf	#0
-  78:	000001cc 	udf	#460
+  78:	000001ec 	udf	#492
 	...
 
 Disassembly of section .debug_str:
