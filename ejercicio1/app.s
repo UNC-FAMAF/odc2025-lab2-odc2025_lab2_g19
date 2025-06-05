@@ -24,6 +24,7 @@
 	.extern drawO
 	.extern drawD
 	.extern detailC
+	.extern drawcinco
 
 main:
 	// x0 contiene la direccion base del framebuffer
@@ -143,6 +144,22 @@ loop0:
 	movk w7, #0x1919, lsl 00
 	bl detailC
 
+
+	// ODC-2-025
+	mov x0, 290	//centro x
+	mov x1, 170	//centro y
+	mov x3, 50	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawdos
+
+	// ODC 202-5
+	mov x0, 350	//centro x
+	mov x1, 170	//centro y
+	mov x3, 50	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawcinco
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
 	// dudas)
 	mov x9, GPIO_BASE

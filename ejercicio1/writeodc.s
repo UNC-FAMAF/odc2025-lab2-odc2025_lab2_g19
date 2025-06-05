@@ -11,6 +11,8 @@
     .globl drawO
     .globl drawD
     .globl detailC
+    .globl drawdos
+    .globl drawcinco
 
 
 drawO:    
@@ -167,10 +169,12 @@ detailC:
     mov x22, x1
     mov x23, x3
     mov w24, w7 //particularmente me interesa el color con el que se pinta 
+                // TODAVIA NO IMPLEMENTADO
 
     //----------------------------------------
     //  PARTE VACIA (se tiene que pintar primero tristemente)
     //----------------------------------------
+
     movz w7, 0x0019, lsl 16
     movk w7, 0x1919, lsl 00
 
@@ -192,7 +196,224 @@ detailC:
     sub x1, x1, x9
     
     bl hacer_rectangulo
-    //QUEDA REFINAR 
+
+
+    //QUEDA REFINAR  añadir patitas de la C
     ldp x29, x30, [sp], #16
     ret
 
+drawdos:
+
+    stp x29, x30, [sp, #-16]!
+
+    //Guardo los valores iniciales
+    mov x21, x0
+    mov x22, x1
+    mov x23, x3
+
+    //IDEA: RECTANGULO GRANDE Y PINTO DOS DOS RECTANGULOS DEL COLOR DE LA TELE
+    //defino ancho = 4/5 x3
+    mov x2, x3
+    mov x9, 4 
+    mul x2, x2, x9
+    mov x9, 5
+    udiv x2, x2, x9
+
+    //mover x1 x3/2 para arriba
+    mov x9, x3
+    mov x10, 2
+    
+    udiv x9, x9, x10
+
+    sub x1, x1, x9
+    //mover x0, x2/2 para izq
+    mov x9, x2
+    mov x10, 2
+    
+    udiv x9, x9, x10
+
+    sub x0, x0, x9
+    bl hacer_rectangulo
+
+    //-------------------------------
+    //     RECTANGULO NEGRO 1
+    //-------------------------------
+    // restauro val iniciales
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23
+    movz w7, 0x0019, lsl 16
+    movk w7, 0x1919, lsl 00
+
+    //muevo x1
+    mov x9, 9
+    udiv x9, x3, x9   
+    add x1, x1, x9 
+
+    //defino ancho = 3/4
+    mov x2, x3
+    mov x9, 3
+    mul x2, x2, x9
+    mov x9, 4
+    udiv x2, x2, x9
+
+    //defino alto = 1/5
+    mov x9, 4
+    udiv x3, x3, x9 //x3 = 1/5 (x3)
+
+    //muevo x0
+    mov x9, 1
+    mul x9, x2, x9
+    mov x10, 4
+    udiv x9, x9, x10
+
+    sub x0, x0, x9
+
+    bl hacer_rectangulo 
+
+    //----------------------------------------
+    // PROXIMO RECTANGULO NEGRO
+    //----------------------------------------
+
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23
+    movz w7, 0x0019, lsl 16
+    movk w7, 0x1919, lsl 00    
+    
+    //muevo x1
+    mov x9, 3
+    udiv x9, x3, x9   
+    sub x1, x1, x9 
+
+    //defino ancho = 12/21 (quedaba cool)
+    mov x2, x3
+    mov x9, 12
+    mul x2, x2, x9
+    mov x9, 21
+    udiv x2, x2, x9
+
+    //defino alto = 1/5
+    mov x9, 4
+    udiv x3, x3, x9 //x3 = 1/5 (x3)
+
+    //muevo x0
+    mov x9, 5
+    mul x9, x2, x9
+    mov x10, 7
+    udiv x9, x9, x10
+
+    sub x0, x0, x9
+
+    bl hacer_rectangulo
+
+    ldp x29, x30, [sp], #16
+    ret
+
+drawcinco:
+
+    stp x29, x30, [sp, #-16]!
+
+    //Guardo los valores iniciales
+    mov x21, x0
+    mov x22, x1
+    mov x23, x3
+
+    //IDEA: RECTANGULO GRANDE Y PINTO DOS DOS RECTANGULOS DEL COLOR DE LA TELE
+    //defino ancho = 4/5 x3
+    mov x2, x3
+    mov x9, 4 
+    mul x2, x2, x9
+    mov x9, 5
+    udiv x2, x2, x9
+
+    //mover x1 x3/2 para arriba
+    mov x9, x3
+    mov x10, 2
+    
+    udiv x9, x9, x10
+
+    sub x1, x1, x9
+    //mover x0, x2/2 para izq
+    mov x9, x2
+    mov x10, 2
+    
+    udiv x9, x9, x10
+
+    sub x0, x0, x9
+    bl hacer_rectangulo
+
+    //-------------------------------
+    //     RECTANGULO NEGRO 1
+    //-------------------------------
+    // restauro val iniciales
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23
+    movz w7, 0x0019, lsl 16
+    movk w7, 0x1919, lsl 00
+
+    //muevo x1
+    mov x9, 9
+    udiv x9, x3, x9   
+    add x1, x1, x9 
+
+    //defino ancho = 3/4
+    mov x2, x3
+    mov x9, 3
+    mul x2, x2, x9
+    mov x9, 4
+    udiv x2, x2, x9
+
+    //defino alto = 1/5
+    mov x9, 4
+    udiv x3, x3, x9 //x3 = 1/5 (x3)
+
+    //muevo x0
+    mov x9, 1
+    mul x9, x2, x9
+    mov x10, 4
+    udiv x9, x9, x10
+
+    sub x0, x0, x9
+
+    bl hacer_rectangulo 
+
+    //----------------------------------------
+    // PROXIMO RECTANGULO NEGRO
+    //----------------------------------------
+
+    mov x0, x21
+    mov x1, x22
+    mov x3, x23
+    movz w7, 0x0019, lsl 16
+    movk w7, 0x1919, lsl 00    
+    
+    //muevo x1
+    mov x9, 3
+    udiv x9, x3, x9   
+    sub x1, x1, x9 
+
+    //defino ancho = 12/21 (quedaba cool)
+    mov x2, x3
+    mov x9, 12
+    mul x2, x2, x9
+    mov x9, 21
+    udiv x2, x2, x9
+
+    //defino alto = 1/5
+    mov x9, 4
+    udiv x3, x3, x9 //x3 = 1/5 (x3)
+
+    //muevo x0
+    mov x9, 5
+    mul x9, x2, x9
+    mov x10, 7
+    udiv x9, x9, x10
+
+    sub x0, x0, x9
+
+    bl hacer_rectangulo
+
+    ldp x29, x30, [sp], #16
+    ret
