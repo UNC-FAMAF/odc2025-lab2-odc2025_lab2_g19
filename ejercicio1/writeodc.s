@@ -237,7 +237,7 @@ drawdos:
     bl hacer_rectangulo
 
     //-------------------------------
-    //     RECTANGULO NEGRO 1
+    //     RECTANGULO NEGRO 1 (el de abajo)
     //-------------------------------
     // restauro val iniciales
     mov x0, x21
@@ -255,7 +255,7 @@ drawdos:
     mov x2, x3
     mov x9, 3
     mul x2, x2, x9
-    mov x9, 4
+    mov x9, 5
     udiv x2, x2, x9
 
     //defino alto = 1/5
@@ -287,16 +287,16 @@ drawdos:
     udiv x9, x3, x9   
     sub x1, x1, x9 
 
-    //defino ancho = 12/21 (quedaba cool)
+    //defino ancho = 2/3 (quedaba cool)
     mov x2, x3
-    mov x9, 12
+    mov x9, 2
     mul x2, x2, x9
-    mov x9, 21
+    mov x9, 3
     udiv x2, x2, x9
 
-    //defino alto = 1/5
+    //defino alto = 1/4
     mov x9, 4
-    udiv x3, x3, x9 //x3 = 1/5 (x3)
+    udiv x3, x3, x9 //x3 = 1/4 (x3)
 
     //muevo x0
     mov x9, 5
@@ -314,7 +314,6 @@ drawdos:
 drawcero:
 
     stp x29, x30, [sp, #-16]!
-
     //Guardo los valores iniciales
     mov x21, x0
     mov x22, x1
@@ -324,13 +323,8 @@ drawcero:
     //         RECTANGULO VERTICAL
     //----------------------------------------
 
-    mov x9, 35
-    mov x10, 100
-    mul x4, x3, x9
-    udiv x4, x4, x10 //x4 = 5% de tam
-
-    mov x2, x3
-    sub x2, x2, x4  //x2 (ancho) = 70% X3
+    mov x9, 2
+    udiv x2, x3, x9 //x2 = x3/2
 
     // Muevo el centro en y de la o a la esquina superior izquerda del rectangulo parado (seria 5%
     // del ancho de la figura)
@@ -355,22 +349,17 @@ drawcero:
     mov x1, x22
     mov x3, x23
 
+    //Calculo de x2 = 7/10 * x3
+    mov x9, 7
+    mul x9, x3, x9
+    mov x10, 10
+    udiv x2, x9, x10
 
-    mov x9, 10
-    mov x10, 100
-    
-    mul x4, x3, x9
-    udiv x4, x4, x10
-
-    //QUEREMOS QUE X3 SEA EL 85% DE LO QUE ERA ANTES, O SEA, EL ALTO DEL RECT HORZ
-    //SEA EL 85% DE ALTO DEL VERTICAL 
-
-    mov x2, x3
-    sub x2, x2, x4
-
-
-    mov x3, x2 // x3 = x2
-
+    //Reduccion de x3
+    mov x9, 4
+    mul x3, x3, x9
+    mov x9, 5
+    udiv x3, x3, x9
 
     // Recalcular esquina superior izquierda
     mov x9, x2
@@ -381,7 +370,7 @@ drawcero:
     udiv x9, x3, x10
     sub x1, x1, x9
     
-    // bl hacer_rectangulo
+    bl hacer_rectangulo
 
     ldp x29, x30, [sp], #16 //Restaurar para hacer el ret como la gente
     ret

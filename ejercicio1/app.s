@@ -103,14 +103,14 @@ loop0:
 	// O-DC2025
 	mov x0, 130	//centro x
 	mov x1, 170	//centro y
-	mov x3, 50	//alto
+	mov x3, 20	//alto
 	movz w7, #0x00FF, lsl 16
 	movk w7, #0xFFFF, lsl 00
 	bl drawO
 	//O interna
 	mov x0, 130	//centro x
 	mov x1, 170	//centro y
-	mov x3, 35	//alto
+	mov x3, 12	//alto
 	movz w7, #0x0019, lsl 16
 	movk w7, #0x1919, lsl 00
 	bl drawO
@@ -118,14 +118,14 @@ loop0:
 	//O-D-C2025
 	mov x0, 185	//centro x
 	mov x1, 170	//centro y
-	mov x3, 50	//alto
+	mov x3, 20	//alto
 	movz w7, #0x00FF, lsl 16
 	movk w7, #0xFFFF, lsl 00
 	bl drawD
 	//D interna
 	mov x0, 185	//centro x
 	mov x1, 170	//centro y
-	mov x3, 35	//alto
+	mov x3, 12	//alto
 	movz w7, #0x0019, lsl 16
 	movk w7, #0x1919, lsl 00
 	bl drawD
@@ -134,13 +134,13 @@ loop0:
 	// OD-C-2025
 	mov x0, 240	//centro x
 	mov x1, 170	//centro y
-	mov x3, 50	//alto
+	mov x3, 20	//alto
 	movz w7, #0x00FF, lsl 16
 	movk w7, #0xFFFF, lsl 00
 	bl drawO
 	mov x0, 240	//centro x
 	mov x1, 170	//centro y
-	mov x3, 35	//alto
+	mov x3, 12	//alto
 	movz w7, #0x0019, lsl 16
 	movk w7, #0x1919, lsl 00
 	bl detailC
@@ -149,24 +149,38 @@ loop0:
 	// ODC-2-025
 	mov x0, 290	//centro x
 	mov x1, 170	//centro y
-	mov x3, 50	//alto
+	mov x3, 20	//alto
 	movz w7, #0x00FF, lsl 16
 	movk w7, #0xFFFF, lsl 00
 	bl drawdos
 
 	// ODC2-0-25
-	mov x0, 350	//centro x
+	mov x0, 340	//centro x
 	mov x1, 170	//centro y
-	mov x3, 50	//alto
+	mov x3, 20	//alto
 	movz w7, #0x00FF, lsl 16
 	movk w7, #0xFFFF, lsl 00
 	bl drawcero
+	// HUECO
+	mov x0, 340	//centro x
+	mov x1, 170	//centro y
+	mov x3, 12	//alto
+	movz w7, #0x0019, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl drawcero
 
+	// ODC20-2-5
+	mov x0, 390	//centro x
+	mov x1, 170	//centro y
+	mov x3, 20	//alto
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawdos
 
 	// ODC 202-5
-	mov x0, 500	//centro x
+	mov x0, 440	//centro x
 	mov x1, 170	//centro y
-	mov x3, 50	//alto
+	mov x3, 20	//alto
 	movz w7, #0x00FF, lsl 16
 	movk w7, #0xFFFF, lsl 00
 	bl drawcinco
