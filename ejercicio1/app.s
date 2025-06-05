@@ -47,12 +47,20 @@ loop0:
 	stur w7,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
 	sub x1,x1,1	   // Decrementar contador X
-	cbnz x1,loop0  // Si no terminó la fila, salto
+	cbnz x1,loop0  // Si no terminó la 1fila, salto
 	sub x2,x2,1	   // Decrementar contador Y
 	cbnz x2,loop1  // Si no es la última fila, salto
+	// PISO
+	mov x0, 0 // esquina superior izquierda, pos x
+	mov x1, 349 // esquina superior izquierda, pos y
+	mov x2, 640 // ancho
+	mov x3, 131 // alto
+	movz w7, #0x31, lsl 16 // color
+	movk w7, #0x33CC, lsl 00
+	bl hacer_rectangulo
 
 
-	// MARCO DE TELE
+	// MARCO DE TELE 273 - 16 = 257 480 - 257 = 223
 	mov x0, 87 // esquina superior izquierda, pos x
 	mov x1, 16 // esquina superior izquierda, pos y
 	mov x2, 476 // ancho
@@ -62,11 +70,32 @@ loop0:
 	bl hacer_rectangulo
 
 	//CABEZA
-	mov x0, #320        // center x
-    mov x1, #240        // center y
-    mov x2, #50         // radius
-    movz w7, #0x00FF, lsl 16 // color
-	movk w7, #0xFFFF, lsl 00	
+	mov x0, #155     // center x
+    mov x1, #326        // center y
+    mov x2, #33         // radius
+    movz w7, #0x6C, lsl 16 // color
+	movk w7, #0x4600, lsl 00	
+	bl hacer_circulo
+
+	mov x0, #268     // center x
+    mov x1, #326        // center y
+    mov x2, #33         // radius
+    movz w7, #0x6C, lsl 16 // color
+	movk w7, #0x4600, lsl 00	
+	bl hacer_circulo
+
+	mov x0, #378     // center x
+    mov x1, #326        // center y
+    mov x2, #33         // radius
+    movz w7, #0xF9, lsl 16 // color
+	movk w7, #0x4B16, lsl 00	
+	bl hacer_circulo
+
+	mov x0, #488     // center x
+    mov x1, #326        // center y
+    mov x2, #33         // radius
+    movz w7, #0xE8, lsl 16 // color
+	movk w7, #0x9700, lsl 00	
 	bl hacer_circulo
 
 	// O-DC2025
