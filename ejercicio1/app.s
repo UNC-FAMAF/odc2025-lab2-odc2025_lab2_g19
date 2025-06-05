@@ -141,6 +141,7 @@ hacer_rectangulo: //toma x0: esquina sup. izq. x,  x1: esquina sup. izq. y,
 
 .ret_hr:
 	lsr x0, x0, #2
+	lsr x2, x2, #2
 	ret
 
 // PRE: x01 < 640, x1 < 480, x2 < 640 + x0, x3 < 480 + x1, w7 <= 0xFFFFFF
