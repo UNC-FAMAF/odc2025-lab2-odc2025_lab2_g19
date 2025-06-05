@@ -16833,7 +16833,7 @@ Disassembly of section .debug_info:
   18:	00090254 	.inst	0x00090254 ; undefined
 	...
   24:	00000006 	udf	#6
-  28:	00000045 	udf	#69
+  28:	00000043 	udf	#67
   2c:	002a8001 	.inst	0x002a8001 ; NYI
   30:	00020000 	.inst	0x00020000 ; undefined
   34:	00000014 	udf	#20
@@ -16842,9 +16842,9 @@ Disassembly of section .debug_info:
   40:	00000008 	udf	#8
   44:	00c80000 	.inst	0x00c80000 ; undefined
   48:	00000009 	udf	#9
-  4c:	00510000 	.inst	0x00510000 ; undefined
-  50:	00060000 	.inst	0x00060000 ; undefined
-  54:	00450000 	.inst	0x00450000 ; undefined
+  4c:	004f0000 	.inst	0x004f0000 ; undefined
+  50:	00570000 	.inst	0x00570000 ; undefined
+  54:	00430000 	.inst	0x00430000 ; undefined
   58:	80010000 	.inst	0x80010000 ; undefined
   5c:	0000002a 	udf	#42
   60:	00280002 	.inst	0x00280002 ; NYI
@@ -16854,9 +16854,9 @@ Disassembly of section .debug_info:
   70:	00000000 	udf	#0
   74:	00110440 	.inst	0x00110440 ; undefined
   78:	00000000 	udf	#0
-  7c:	00000059 	udf	#89
+  7c:	00000096 	udf	#150
   80:	00000006 	udf	#6
-  84:	00000045 	udf	#69
+  84:	00000043 	udf	#67
   88:	Address 0x88 is out of bounds.
 
 
@@ -16911,27 +16911,43 @@ Disassembly of section .debug_str:
 
 0000000000000000 <.debug_str>:
    0:	2e707061 	uabdl	v1.4s, v3.4h, v16.4h
-   4:	682f0073 	.inst	0x682f0073 ; undefined
-   8:	2f656d6f 	.inst	0x2f656d6f ; undefined
-   c:	746e6173 	.inst	0x746e6173 ; undefined
-  10:	2f6d6169 	umlsl	v9.4s, v11.4h, v13.h[2]
-  14:	6b736544 	.inst	0x6b736544 ; undefined
-  18:	2f706f74 	.inst	0x2f706f74 ; undefined
-  1c:	3263646f 	.inst	0x3263646f ; undefined
-  20:	2d353230 	stp	s16, s12, [x17, #-88]
-  24:	3262616c 	.inst	0x3262616c ; undefined
-  28:	63646f2d 	.inst	0x63646f2d ; undefined
-  2c:	35323032 	cbnz	w18, 64630 <Set_Palette+0x1c625>
-  30:	62616c5f 	.inst	0x62616c5f ; undefined
-  34:	31675f32 	adds	w18, w25, #0x9d7, lsl #12
-  38:	6a652f39 	bics	w25, w25, w5, lsr #11
-  3c:	69637265 	ldpsw	x5, x28, [x19, #-232]
-  40:	316f6963 	adds	w3, w11, #0xbda, lsl #12
-  44:	554e4700 	.inst	0x554e4700 ; undefined
-  48:	20534120 	.inst	0x20534120 ; undefined
-  4c:	32342e32 	orr	w18, w17, #0xfff000
-  50:	61747300 	.inst	0x61747300 ; undefined
-  54:	732e7472 	.inst	0x732e7472 ; undefined
-  58:	69727700 	ldpsw	x0, x29, [x24, #-112]
-  5c:	646f6574 	.inst	0x646f6574 ; undefined
-  60:	00732e63 	.inst	0x00732e63 ; undefined
+   4:	6d2f0073 	stp	d19, d0, [x3, #-272]
+   8:	632f746e 	.inst	0x632f746e ; undefined
+   c:	7065522f 	adr	x15, caa53 <.ret_hc+0x3a80b>
+  10:	7469736f 	.inst	0x7469736f ; undefined
+  14:	6f69726f 	fcmla	v15.8h, v19.8h, v9.h[1], #270
+  18:	646f2f73 	.inst	0x646f2f73 ; undefined
+  1c:	32303263 	orr	w3, w19, #0x1fff0000
+  20:	616c2d35 	.inst	0x616c2d35 ; undefined
+  24:	6f2d3262 	.inst	0x6f2d3262 ; undefined
+  28:	30326364 	adr	x4, 64c95 <Set_Palette+0x1cc8a>
+  2c:	6c5f3532 	ldnp	d18, d13, [x9, #496]
+  30:	5f326261 	.inst	0x5f326261 ; undefined
+  34:	2f393167 	.inst	0x2f393167 ; undefined
+  38:	72656a65 	.inst	0x72656a65 ; undefined
+  3c:	69636963 	ldpsw	x3, x26, [x11, #-232]
+  40:	4700316f 	.inst	0x4700316f ; undefined
+  44:	4120554e 	.inst	0x4120554e ; undefined
+  48:	2e322053 	usubl	v19.8h, v2.8b, v18.8b
+  4c:	73003234 	.inst	0x73003234 ; undefined
+  50:	74726174 	.inst	0x74726174 ; undefined
+  54:	2f00732e 	.inst	0x2f00732e ; undefined
+  58:	656d6f68 	fnmls	z8.h, p3/m, z27.h, z13.h
+  5c:	6e61732f 	uabdl2	v15.4s, v25.8h, v1.8h
+  60:	6d616974 	ldp	d20, d26, [x11, #-496]
+  64:	7365442f 	.inst	0x7365442f ; undefined
+  68:	706f746b 	adr	x11, deef7 <.ret_hc+0x4ecaf>
+  6c:	63646f2f 	.inst	0x63646f2f ; undefined
+  70:	35323032 	cbnz	w18, 64674 <Set_Palette+0x1c669>
+  74:	62616c2d 	.inst	0x62616c2d ; undefined
+  78:	646f2d32 	.inst	0x646f2d32 ; undefined
+  7c:	32303263 	orr	w3, w19, #0x1fff0000
+  80:	616c5f35 	.inst	0x616c5f35 ; undefined
+  84:	675f3262 	.inst	0x675f3262 ; undefined
+  88:	652f3931 	bfmls	z17.h, p6/m, z9.h, z15.h
+  8c:	6372656a 	.inst	0x6372656a ; undefined
+  90:	6f696369 	umlsl2	v9.4s, v27.8h, v9.h[2]
+  94:	72770031 	.inst	0x72770031 ; undefined
+  98:	6f657469 	uqshl	v9.2d, v3.2d, #37
+  9c:	732e6364 	.inst	0x732e6364 ; undefined
+	...

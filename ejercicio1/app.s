@@ -15,6 +15,7 @@
 	// COLORADO, 0xF94B16
 	// RUBIO, 0xE89700
 	// MARCO_TELE, 0x191919 
+	//AUTITO
 
 	.globl main
 	.globl hacer_rectangulo		// .globl Hace que las funciones puedan ser accedidas
