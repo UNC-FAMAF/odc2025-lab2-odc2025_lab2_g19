@@ -190,6 +190,9 @@ detailC:
     udiv x9, x3, x10
 
     sub x1, x1, x9
-        
+    
     bl hacer_rectangulo
+    //QUEDA REFINAR 
+    ldp x29, x30, [sp], #16
+    ret
 
