@@ -175,8 +175,8 @@ detailC:
     //  PARTE VACIA (se tiene que pintar primero tristemente)
     //----------------------------------------
 
-    movz w7, 0x0019, lsl 16
-    movk w7, 0x1919, lsl 00
+    movz w7, 0x0000, lsl 16
+    movk w7, 0x0000, lsl 00
 
     //Ajustar el tamaño de x3
     mov x9, 3
@@ -248,8 +248,8 @@ drawdos:
     mov x0, x21
     mov x1, x22
     mov x3, x23
-    movz w7, 0x0019, lsl 16
-    movk w7, 0x1919, lsl 00
+    movz w7, 0x0000, lsl 16
+    movk w7, 0x0000, lsl 00
 
     //muevo x1
     mov x9, 9
@@ -284,8 +284,8 @@ drawdos:
     mov x0, x21
     mov x1, x22
     mov x3, x23
-    movz w7, 0x0019, lsl 16
-    movk w7, 0x1919, lsl 00    
+    movz w7, 0x0000, lsl 16
+    movk w7, 0x0000, lsl 00    
     
     //muevo x1
     mov x9, 3
@@ -420,8 +420,8 @@ drawcinco:
     mov x0, x21
     mov x1, x22
     mov x3, x23
-    movz w7, 0x0019, lsl 16
-    movk w7, 0x1919, lsl 00
+    movz w7, 0x0000, lsl 16
+    movk w7, 0x0000, lsl 00
 
     //muevo x1
     mov x9, 9
@@ -456,8 +456,8 @@ drawcinco:
     mov x0, x21
     mov x1, x22
     mov x3, x23
-    movz w7, 0x0019, lsl 16
-    movk w7, 0x1919, lsl 00    
+    movz w7, 0x0000, lsl 16
+    movk w7, 0x0000, lsl 00    
     
     //muevo x1
     mov x9, 3
@@ -524,8 +524,8 @@ drawODC:
     mul x3, x3, x10    
     mov x10, 3
     udiv x3, x3, x10// x3 = x3 * 2/3 (hueco interno)
-    movz w7, #0x0019, lsl 16
-    movk w7, #0x1919, lsl 00
+    movz w7, #0x0000, lsl 16
+    movk w7, #0x0000, lsl 00
     bl drawO
 
     // Avanzar para D
@@ -549,8 +549,8 @@ drawODC:
     mul x3, x3, x10
     mov x10, 3
     udiv x3, x3, x10   // x3 * 2/3
-    movz w7, #0x0019, lsl 16
-    movk w7, #0x1919, lsl 00
+    movz w7, #0x0000, lsl 16
+    movk w7, #0x0000, lsl 00
     bl drawD
 
     //moverme tamD a la derecha 
@@ -567,8 +567,8 @@ drawODC:
     mov x0, x25
     mov x1, x26
     mov x3, x27
-    movz w7, #0x0019, lsl 16
-    movk w7, #0x1919, lsl 00
+    movz w7, #0x0000, lsl 16
+    movk w7, #0x0000, lsl 00
     bl detailC
 
     // Avanzar para 2
@@ -602,8 +602,8 @@ drawODC:
     mul x3, x3, x9
     mov x9, 3
     udiv x3, x3, x9 
-    movz w7, #0x0019, lsl 16
-    movk w7, #0x1919, lsl 00
+    movz w7, #0x0000, lsl 16
+    movk w7, #0x0000, lsl 00
     bl drawcero
 
     // Avanzar para 2

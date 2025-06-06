@@ -50,8 +50,8 @@ main:
 loop1:
 	mov x1, SCREEN_WIDTH         // X Size
 loop0:
-	movz w7, #0x002F, lsl 16 // color
-	movk w7, #0x3254, lsl 00
+	movz w7, #0x006F, lsl 16 // color
+	movk w7, #0x7BF6, lsl 00
 	stur w7,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
 	sub x1,x1,1	   // Decrementar contador X

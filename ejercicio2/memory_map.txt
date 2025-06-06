@@ -92,4 +92,4 @@ LOAD linker stubs
  .debug_str     0x0000000000000000       0xb1 app.o
                                          0x51 (size before relaxing)
  .debug_str     0x00000000000000b1       0x61 start.o
- .debug_str     0x00000000000000b1       0x64 writeodc.o
+ .debug_str     0x00000000000000b1       0x56 writeodc.o

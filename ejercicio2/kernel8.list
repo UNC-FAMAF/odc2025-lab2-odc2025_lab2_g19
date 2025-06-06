@@ -16481,8 +16481,8 @@ Disassembly of section .text:
    90104:	d2805001 	mov	x1, #0x280                 	// #640
 
 0000000000090108 <loop0>:
-   90108:	52a005e7 	mov	w7, #0x2f0000              	// #3080192
-   9010c:	72864a87 	movk	w7, #0x3254
+   90108:	52a00de7 	mov	w7, #0x6f0000              	// #7274496
+   9010c:	728f7ec7 	movk	w7, #0x7bf6
    90110:	b8000007 	stur	w7, [x0]
    90114:	91001000 	add	x0, x0, #0x4
    90118:	d1000421 	sub	x1, x1, #0x1
@@ -16493,8 +16493,8 @@ Disassembly of section .text:
    9012c:	d2802ba1 	mov	x1, #0x15d                 	// #349
    90130:	d2805002 	mov	x2, #0x280                 	// #640
    90134:	d2801063 	mov	x3, #0x83                  	// #131
-   90138:	52a00a87 	mov	w7, #0x540000              	// #5505024
-   9013c:	7284c267 	movk	w7, #0x2613
+   90138:	52a00627 	mov	w7, #0x310000              	// #3211264
+   9013c:	72867987 	movk	w7, #0x33cc
    90140:	9400003b 	bl	9022c <hacer_rectangulo>
    90144:	d2800ae0 	mov	x0, #0x57                  	// #87
    90148:	d2800201 	mov	x1, #0x10                  	// #16
@@ -16832,8 +16832,8 @@ Disassembly of section .text:
   1105ac:	aa0003f5 	mov	x21, x0
   1105b0:	aa0103f6 	mov	x22, x1
   1105b4:	aa0303f7 	mov	x23, x3
-  1105b8:	52a00327 	mov	w7, #0x190000              	// #1638400
-  1105bc:	72832327 	movk	w7, #0x1919
+  1105b8:	52a00007 	movz	w7, #0x0, lsl #16
+  1105bc:	72800007 	movk	w7, #0x0
   1105c0:	d2800069 	mov	x9, #0x3                   	// #3
   1105c4:	9b097c63 	mul	x3, x3, x9
   1105c8:	d28000a9 	mov	x9, #0x5                   	// #5
@@ -16874,8 +16874,8 @@ Disassembly of section .text:
   11064c:	aa1503e0 	mov	x0, x21
   110650:	aa1603e1 	mov	x1, x22
   110654:	aa1703e3 	mov	x3, x23
-  110658:	52a00327 	mov	w7, #0x190000              	// #1638400
-  11065c:	72832327 	movk	w7, #0x1919
+  110658:	52a00007 	movz	w7, #0x0, lsl #16
+  11065c:	72800007 	movk	w7, #0x0
   110660:	d2800129 	mov	x9, #0x9                   	// #9
   110664:	9ac90869 	udiv	x9, x3, x9
   110668:	8b090021 	add	x1, x1, x9
@@ -16895,8 +16895,8 @@ Disassembly of section .text:
   1106a0:	aa1503e0 	mov	x0, x21
   1106a4:	aa1603e1 	mov	x1, x22
   1106a8:	aa1703e3 	mov	x3, x23
-  1106ac:	52a00327 	mov	w7, #0x190000              	// #1638400
-  1106b0:	72832327 	movk	w7, #0x1919
+  1106ac:	52a00007 	movz	w7, #0x0, lsl #16
+  1106b0:	72800007 	movk	w7, #0x0
   1106b4:	d2800069 	mov	x9, #0x3                   	// #3
   1106b8:	9ac90869 	udiv	x9, x3, x9
   1106bc:	cb090021 	sub	x1, x1, x9
@@ -16974,8 +16974,8 @@ Disassembly of section .text:
   1107cc:	aa1503e0 	mov	x0, x21
   1107d0:	aa1603e1 	mov	x1, x22
   1107d4:	aa1703e3 	mov	x3, x23
-  1107d8:	52a00327 	mov	w7, #0x190000              	// #1638400
-  1107dc:	72832327 	movk	w7, #0x1919
+  1107d8:	52a00007 	movz	w7, #0x0, lsl #16
+  1107dc:	72800007 	movk	w7, #0x0
   1107e0:	d2800129 	mov	x9, #0x9                   	// #9
   1107e4:	9ac90869 	udiv	x9, x3, x9
   1107e8:	8b090021 	add	x1, x1, x9
@@ -16995,8 +16995,8 @@ Disassembly of section .text:
   110820:	aa1503e0 	mov	x0, x21
   110824:	aa1603e1 	mov	x1, x22
   110828:	aa1703e3 	mov	x3, x23
-  11082c:	52a00327 	mov	w7, #0x190000              	// #1638400
-  110830:	72832327 	movk	w7, #0x1919
+  11082c:	52a00007 	movz	w7, #0x0, lsl #16
+  110830:	72800007 	movk	w7, #0x0
   110834:	d2800069 	mov	x9, #0x3                   	// #3
   110838:	9ac90869 	udiv	x9, x3, x9
   11083c:	cb090021 	sub	x1, x1, x9
@@ -17042,8 +17042,8 @@ Disassembly of section .text:
   1108d4:	9b0a7c63 	mul	x3, x3, x10
   1108d8:	d280006a 	mov	x10, #0x3                   	// #3
   1108dc:	9aca0863 	udiv	x3, x3, x10
-  1108e0:	52a00327 	mov	w7, #0x190000              	// #1638400
-  1108e4:	72832327 	movk	w7, #0x1919
+  1108e0:	52a00007 	movz	w7, #0x0, lsl #16
+  1108e4:	72800007 	movk	w7, #0x0
   1108e8:	97fffee8 	bl	110488 <drawO>
   1108ec:	aa1b03e3 	mov	x3, x27
   1108f0:	8b030339 	add	x25, x25, x3
@@ -17060,8 +17060,8 @@ Disassembly of section .text:
   11091c:	9b0a7c63 	mul	x3, x3, x10
   110920:	d280006a 	mov	x10, #0x3                   	// #3
   110924:	9aca0863 	udiv	x3, x3, x10
-  110928:	52a00327 	mov	w7, #0x190000              	// #1638400
-  11092c:	72832327 	movk	w7, #0x1919
+  110928:	52a00007 	movz	w7, #0x0, lsl #16
+  11092c:	72800007 	movk	w7, #0x0
   110930:	97fffeff 	bl	11052c <drawD>
   110934:	aa1b03e3 	mov	x3, x27
   110938:	8b030339 	add	x25, x25, x3
@@ -17072,8 +17072,8 @@ Disassembly of section .text:
   11094c:	aa1903e0 	mov	x0, x25
   110950:	aa1a03e1 	mov	x1, x26
   110954:	aa1b03e3 	mov	x3, x27
-  110958:	52a00327 	mov	w7, #0x190000              	// #1638400
-  11095c:	72832327 	movk	w7, #0x1919
+  110958:	52a00007 	movz	w7, #0x0, lsl #16
+  11095c:	72800007 	movk	w7, #0x0
   110960:	97ffff12 	bl	1105a8 <detailC>
   110964:	aa1b03e3 	mov	x3, x27
   110968:	8b030339 	add	x25, x25, x3
@@ -17099,8 +17099,8 @@ Disassembly of section .text:
   1109b8:	9b097c63 	mul	x3, x3, x9
   1109bc:	d2800069 	mov	x9, #0x3                   	// #3
   1109c0:	9ac90863 	udiv	x3, x3, x9
-  1109c4:	52a00327 	mov	w7, #0x190000              	// #1638400
-  1109c8:	72832327 	movk	w7, #0x1919
+  1109c4:	52a00007 	movz	w7, #0x0, lsl #16
+  1109c8:	72800007 	movk	w7, #0x0
   1109cc:	97ffff4c 	bl	1106fc <drawcero>
   1109d0:	aa1b03e3 	mov	x3, x27
   1109d4:	d2800129 	mov	x9, #0x9                   	// #9
@@ -17366,7 +17366,7 @@ Disassembly of section .debug_info:
   74:	00110a30 	.inst	0x00110a30 ; undefined
   78:	00000000 	udf	#0
   7c:	000000a6 	udf	#166
-  80:	00000059 	udf	#89
+  80:	00000006 	udf	#6
   84:	00000045 	udf	#69
   88:	Address 0x88 is out of bounds.
 
