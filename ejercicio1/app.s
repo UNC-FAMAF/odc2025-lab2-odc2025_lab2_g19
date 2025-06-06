@@ -72,6 +72,14 @@ loop0:
 	movk w7, #0x1919, lsl 00
 	bl hacer_rectangulo
 
+	// PANTALLA DE TELE 273 - 16 = 257 - 3 = 254 480 - 257 = 223
+	mov x0, 91 // esquina superior izquierda, pos x
+	mov x1, 20 // esquina superior izquierda, pos y
+	mov x2, 468 // ancho
+	mov x3, 244 // alto
+	mov w7, #0 
+	bl hacer_rectangulo
+
 	//CABEZA
 	mov x0, #155     // center x
     mov x1, #326        // center y
@@ -109,6 +117,12 @@ loop0:
 	movk w7, #0x0303, lsl 00
 	bl hacer_circulo
 
+    mov x0, 200 // esquina superior izquierda, pos x
+	mov x1, 200 // esquina superior izquierda, pos y
+	mov x3, 30
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawODC
 	//Cuerpo del sillón
 	mov x0, #106
 	mov x1, #316
@@ -117,13 +131,6 @@ loop0:
 	movz w7, #0xC0, lsl 16
 	movk w7, #0x0303, lsl 00
 	bl hacer_rectangulo
-
-	mov x0, 87 // esquina superior izquierda, pos x
-	mov x1, 16 // esquina superior izquierda, pos y
-	mov x3, 30
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawODC
 
 	
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
