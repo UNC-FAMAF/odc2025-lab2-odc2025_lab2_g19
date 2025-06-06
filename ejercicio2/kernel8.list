@@ -16495,7 +16495,11 @@ Disassembly of section .text:
    90134:	d2801063 	mov	x3, #0x83                  	// #131
    90138:	52a00627 	mov	w7, #0x310000              	// #3211264
    9013c:	72867987 	movk	w7, #0x33cc
+<<<<<<< Updated upstream
    90140:	94000078 	bl	90320 <hacer_rectangulo>
+=======
+   90140:	9400006a 	bl	902e8 <hacer_rectangulo>
+>>>>>>> Stashed changes
    90144:	d2800ae0 	mov	x0, #0x57                  	// #87
    90148:	d2800201 	mov	x1, #0x10                  	// #16
    9014c:	d2803b82 	mov	x2, #0x1dc                 	// #476
@@ -16855,6 +16859,7 @@ Disassembly of section .text:
   110618:	a8c17bfd 	ldp	x29, x30, [sp], #16
   11061c:	d65f03c0 	ret
 
+<<<<<<< Updated upstream
 0000000000110620 <drawD>:
   110620:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
   110624:	aa0003f5 	mov	x21, x0
@@ -16976,6 +16981,96 @@ Disassembly of section .text:
   1107e4:	97fdfecf 	bl	90320 <hacer_rectangulo>
   1107e8:	a8c17bfd 	ldp	x29, x30, [sp], #16
   1107ec:	d65f03c0 	ret
+=======
+0000000000110664 <detailC>:
+  110664:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+  110668:	aa0003f5 	mov	x21, x0
+  11066c:	aa0103f6 	mov	x22, x1
+  110670:	aa0303f7 	mov	x23, x3
+  110674:	52a00007 	movz	w7, #0x0, lsl #16
+  110678:	72800007 	movk	w7, #0x0
+  11067c:	d2800069 	mov	x9, #0x3                   	// #3
+  110680:	9b097c63 	mul	x3, x3, x9
+  110684:	d28000a9 	mov	x9, #0x5                   	// #5
+  110688:	9ac90863 	udiv	x3, x3, x9
+  11068c:	aa0303e2 	mov	x2, x3
+  110690:	8b020042 	add	x2, x2, x2
+  110694:	d2800049 	mov	x9, #0x2                   	// #2
+  110698:	d28000aa 	mov	x10, #0x5                   	// #5
+  11069c:	9b037d29 	mul	x9, x9, x3
+  1106a0:	9aca0929 	udiv	x9, x9, x10
+  1106a4:	cb090000 	sub	x0, x0, x9
+  1106a8:	d280004a 	mov	x10, #0x2                   	// #2
+  1106ac:	9aca0869 	udiv	x9, x3, x10
+  1106b0:	cb090021 	sub	x1, x1, x9
+  1106b4:	97fdff0d 	bl	902e8 <hacer_rectangulo>
+  1106b8:	a8c17bfd 	ldp	x29, x30, [sp], #16
+  1106bc:	d65f03c0 	ret
+
+00000000001106c0 <drawdos>:
+  1106c0:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+  1106c4:	aa0003f5 	mov	x21, x0
+  1106c8:	aa0103f6 	mov	x22, x1
+  1106cc:	aa0303f7 	mov	x23, x3
+  1106d0:	aa0303e2 	mov	x2, x3
+  1106d4:	d2800089 	mov	x9, #0x4                   	// #4
+  1106d8:	9b097c42 	mul	x2, x2, x9
+  1106dc:	d28000a9 	mov	x9, #0x5                   	// #5
+  1106e0:	9ac90842 	udiv	x2, x2, x9
+  1106e4:	aa0303e9 	mov	x9, x3
+  1106e8:	d280004a 	mov	x10, #0x2                   	// #2
+  1106ec:	9aca0929 	udiv	x9, x9, x10
+  1106f0:	cb090021 	sub	x1, x1, x9
+  1106f4:	aa0203e9 	mov	x9, x2
+  1106f8:	d280004a 	mov	x10, #0x2                   	// #2
+  1106fc:	9aca0929 	udiv	x9, x9, x10
+  110700:	cb090000 	sub	x0, x0, x9
+  110704:	97fdfef9 	bl	902e8 <hacer_rectangulo>
+  110708:	aa1503e0 	mov	x0, x21
+  11070c:	aa1603e1 	mov	x1, x22
+  110710:	aa1703e3 	mov	x3, x23
+  110714:	52a00007 	movz	w7, #0x0, lsl #16
+  110718:	72800007 	movk	w7, #0x0
+  11071c:	d2800129 	mov	x9, #0x9                   	// #9
+  110720:	9ac90869 	udiv	x9, x3, x9
+  110724:	8b090021 	add	x1, x1, x9
+  110728:	aa0303e2 	mov	x2, x3
+  11072c:	d2800069 	mov	x9, #0x3                   	// #3
+  110730:	9b097c42 	mul	x2, x2, x9
+  110734:	d28000a9 	mov	x9, #0x5                   	// #5
+  110738:	9ac90842 	udiv	x2, x2, x9
+  11073c:	d2800089 	mov	x9, #0x4                   	// #4
+  110740:	9ac90863 	udiv	x3, x3, x9
+  110744:	d2800029 	mov	x9, #0x1                   	// #1
+  110748:	9b097c49 	mul	x9, x2, x9
+  11074c:	d280008a 	mov	x10, #0x4                   	// #4
+  110750:	9aca0929 	udiv	x9, x9, x10
+  110754:	cb090000 	sub	x0, x0, x9
+  110758:	97fdfee4 	bl	902e8 <hacer_rectangulo>
+  11075c:	aa1503e0 	mov	x0, x21
+  110760:	aa1603e1 	mov	x1, x22
+  110764:	aa1703e3 	mov	x3, x23
+  110768:	52a00007 	movz	w7, #0x0, lsl #16
+  11076c:	72800007 	movk	w7, #0x0
+  110770:	d2800069 	mov	x9, #0x3                   	// #3
+  110774:	9ac90869 	udiv	x9, x3, x9
+  110778:	cb090021 	sub	x1, x1, x9
+  11077c:	aa0303e2 	mov	x2, x3
+  110780:	d2800049 	mov	x9, #0x2                   	// #2
+  110784:	9b097c42 	mul	x2, x2, x9
+  110788:	d2800069 	mov	x9, #0x3                   	// #3
+  11078c:	9ac90842 	udiv	x2, x2, x9
+  110790:	d2800089 	mov	x9, #0x4                   	// #4
+  110794:	9ac90863 	udiv	x3, x3, x9
+  110798:	d28000a9 	mov	x9, #0x5                   	// #5
+  11079c:	9b097c49 	mul	x9, x2, x9
+  1107a0:	d28000ea 	mov	x10, #0x7                   	// #7
+  1107a4:	9aca0929 	udiv	x9, x9, x10
+  1107a8:	cb090000 	sub	x0, x0, x9
+  1107ac:	97fdfecf 	bl	902e8 <hacer_rectangulo>
+  1107b0:	a8c17bfd 	ldp	x29, x30, [sp], #16
+  1107b4:	d65f03c0 	ret
+>>>>>>> Stashed changes
 
 00000000001107f0 <drawcero>:
   1107f0:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
@@ -17013,6 +17108,7 @@ Disassembly of section .text:
   110870:	a8c17bfd 	ldp	x29, x30, [sp], #16
   110874:	d65f03c0 	ret
 
+<<<<<<< Updated upstream
 0000000000110878 <drawcinco>:
   110878:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
   11087c:	aa0003f5 	mov	x21, x0
@@ -17187,6 +17283,182 @@ Disassembly of section .text:
   110b18:	97ffff58 	bl	110878 <drawcinco>
   110b1c:	a8c17bfd 	ldp	x29, x30, [sp], #16
   110b20:	d65f03c0 	ret
+=======
+0000000000110840 <drawcinco>:
+  110840:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+  110844:	aa0003f5 	mov	x21, x0
+  110848:	aa0103f6 	mov	x22, x1
+  11084c:	aa0303f7 	mov	x23, x3
+  110850:	aa0303e2 	mov	x2, x3
+  110854:	d2800089 	mov	x9, #0x4                   	// #4
+  110858:	9b097c42 	mul	x2, x2, x9
+  11085c:	d28000a9 	mov	x9, #0x5                   	// #5
+  110860:	9ac90842 	udiv	x2, x2, x9
+  110864:	aa0303e9 	mov	x9, x3
+  110868:	d280004a 	mov	x10, #0x2                   	// #2
+  11086c:	9aca0929 	udiv	x9, x9, x10
+  110870:	cb090021 	sub	x1, x1, x9
+  110874:	aa0203e9 	mov	x9, x2
+  110878:	d280004a 	mov	x10, #0x2                   	// #2
+  11087c:	9aca0929 	udiv	x9, x9, x10
+  110880:	cb090000 	sub	x0, x0, x9
+  110884:	97fdfe99 	bl	902e8 <hacer_rectangulo>
+  110888:	aa1503e0 	mov	x0, x21
+  11088c:	aa1603e1 	mov	x1, x22
+  110890:	aa1703e3 	mov	x3, x23
+  110894:	52a00007 	movz	w7, #0x0, lsl #16
+  110898:	72800007 	movk	w7, #0x0
+  11089c:	d2800129 	mov	x9, #0x9                   	// #9
+  1108a0:	9ac90869 	udiv	x9, x3, x9
+  1108a4:	8b090021 	add	x1, x1, x9
+  1108a8:	aa0303e2 	mov	x2, x3
+  1108ac:	d2800069 	mov	x9, #0x3                   	// #3
+  1108b0:	9b097c42 	mul	x2, x2, x9
+  1108b4:	d2800089 	mov	x9, #0x4                   	// #4
+  1108b8:	9ac90842 	udiv	x2, x2, x9
+  1108bc:	d2800089 	mov	x9, #0x4                   	// #4
+  1108c0:	9ac90863 	udiv	x3, x3, x9
+  1108c4:	d2800069 	mov	x9, #0x3                   	// #3
+  1108c8:	9b097c49 	mul	x9, x2, x9
+  1108cc:	d280008a 	mov	x10, #0x4                   	// #4
+  1108d0:	9aca0929 	udiv	x9, x9, x10
+  1108d4:	cb090000 	sub	x0, x0, x9
+  1108d8:	97fdfe84 	bl	902e8 <hacer_rectangulo>
+  1108dc:	aa1503e0 	mov	x0, x21
+  1108e0:	aa1603e1 	mov	x1, x22
+  1108e4:	aa1703e3 	mov	x3, x23
+  1108e8:	52a00007 	movz	w7, #0x0, lsl #16
+  1108ec:	72800007 	movk	w7, #0x0
+  1108f0:	d2800069 	mov	x9, #0x3                   	// #3
+  1108f4:	9ac90869 	udiv	x9, x3, x9
+  1108f8:	cb090021 	sub	x1, x1, x9
+  1108fc:	aa0303e2 	mov	x2, x3
+  110900:	d2800189 	mov	x9, #0xc                   	// #12
+  110904:	9b097c42 	mul	x2, x2, x9
+  110908:	d28002a9 	mov	x9, #0x15                  	// #21
+  11090c:	9ac90842 	udiv	x2, x2, x9
+  110910:	d2800089 	mov	x9, #0x4                   	// #4
+  110914:	9ac90863 	udiv	x3, x3, x9
+  110918:	d2800049 	mov	x9, #0x2                   	// #2
+  11091c:	9b097c49 	mul	x9, x2, x9
+  110920:	d28000ea 	mov	x10, #0x7                   	// #7
+  110924:	9aca0929 	udiv	x9, x9, x10
+  110928:	cb090000 	sub	x0, x0, x9
+  11092c:	97fdfe6f 	bl	902e8 <hacer_rectangulo>
+  110930:	a8c17bfd 	ldp	x29, x30, [sp], #16
+  110934:	d65f03c0 	ret
+
+0000000000110938 <drawODC>:
+  110938:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+  11093c:	aa0003f9 	mov	x25, x0
+  110940:	aa0303fb 	mov	x27, x3
+  110944:	2a0703fc 	mov	w28, w7
+  110948:	d2800049 	mov	x9, #0x2                   	// #2
+  11094c:	9ac90863 	udiv	x3, x3, x9
+  110950:	8b03003a 	add	x26, x1, x3
+  110954:	aa1b03e3 	mov	x3, x27
+  110958:	d2800aa9 	mov	x9, #0x55                  	// #85
+  11095c:	9b037d29 	mul	x9, x9, x3
+  110960:	d2800c8a 	mov	x10, #0x64                  	// #100
+  110964:	9aca0929 	udiv	x9, x9, x10
+  110968:	8b090339 	add	x25, x25, x9
+  11096c:	aa1903e0 	mov	x0, x25
+  110970:	aa1a03e1 	mov	x1, x26
+  110974:	aa1b03e3 	mov	x3, x27
+  110978:	2a1c03e7 	mov	w7, w28
+  11097c:	97fffef2 	bl	110544 <drawO>
+  110980:	aa1903e0 	mov	x0, x25
+  110984:	aa1a03e1 	mov	x1, x26
+  110988:	aa1b03e3 	mov	x3, x27
+  11098c:	d280004a 	mov	x10, #0x2                   	// #2
+  110990:	9b0a7c63 	mul	x3, x3, x10
+  110994:	d280006a 	mov	x10, #0x3                   	// #3
+  110998:	9aca0863 	udiv	x3, x3, x10
+  11099c:	52a00007 	movz	w7, #0x0, lsl #16
+  1109a0:	72800007 	movk	w7, #0x0
+  1109a4:	97fffee8 	bl	110544 <drawO>
+  1109a8:	aa1b03e3 	mov	x3, x27
+  1109ac:	8b030339 	add	x25, x25, x3
+  1109b0:	91000f39 	add	x25, x25, #0x3
+  1109b4:	aa1903e0 	mov	x0, x25
+  1109b8:	aa1a03e1 	mov	x1, x26
+  1109bc:	aa1b03e3 	mov	x3, x27
+  1109c0:	2a1c03e7 	mov	w7, w28
+  1109c4:	97ffff09 	bl	1105e8 <drawD>
+  1109c8:	aa1903e0 	mov	x0, x25
+  1109cc:	aa1a03e1 	mov	x1, x26
+  1109d0:	aa1b03e3 	mov	x3, x27
+  1109d4:	d280004a 	mov	x10, #0x2                   	// #2
+  1109d8:	9b0a7c63 	mul	x3, x3, x10
+  1109dc:	d280006a 	mov	x10, #0x3                   	// #3
+  1109e0:	9aca0863 	udiv	x3, x3, x10
+  1109e4:	52a00007 	movz	w7, #0x0, lsl #16
+  1109e8:	72800007 	movk	w7, #0x0
+  1109ec:	97fffeff 	bl	1105e8 <drawD>
+  1109f0:	aa1b03e3 	mov	x3, x27
+  1109f4:	8b030339 	add	x25, x25, x3
+  1109f8:	aa1903e0 	mov	x0, x25
+  1109fc:	aa1a03e1 	mov	x1, x26
+  110a00:	2a1c03e7 	mov	w7, w28
+  110a04:	97fffed0 	bl	110544 <drawO>
+  110a08:	aa1903e0 	mov	x0, x25
+  110a0c:	aa1a03e1 	mov	x1, x26
+  110a10:	aa1b03e3 	mov	x3, x27
+  110a14:	52a00007 	movz	w7, #0x0, lsl #16
+  110a18:	72800007 	movk	w7, #0x0
+  110a1c:	97ffff12 	bl	110664 <detailC>
+  110a20:	aa1b03e3 	mov	x3, x27
+  110a24:	8b030339 	add	x25, x25, x3
+  110a28:	aa1903e0 	mov	x0, x25
+  110a2c:	aa1a03e1 	mov	x1, x26
+  110a30:	2a1c03e7 	mov	w7, w28
+  110a34:	97ffff23 	bl	1106c0 <drawdos>
+  110a38:	aa1b03e3 	mov	x3, x27
+  110a3c:	d28000a9 	mov	x9, #0x5                   	// #5
+  110a40:	9b037d23 	mul	x3, x9, x3
+  110a44:	d28000c9 	mov	x9, #0x6                   	// #6
+  110a48:	9ac90863 	udiv	x3, x3, x9
+  110a4c:	8b030339 	add	x25, x25, x3
+  110a50:	aa1903e0 	mov	x0, x25
+  110a54:	aa1a03e1 	mov	x1, x26
+  110a58:	aa1b03e3 	mov	x3, x27
+  110a5c:	2a1c03e7 	mov	w7, w28
+  110a60:	97ffff56 	bl	1107b8 <drawcero>
+  110a64:	aa1903e0 	mov	x0, x25
+  110a68:	aa1a03e1 	mov	x1, x26
+  110a6c:	aa1b03e3 	mov	x3, x27
+  110a70:	d2800049 	mov	x9, #0x2                   	// #2
+  110a74:	9b097c63 	mul	x3, x3, x9
+  110a78:	d2800069 	mov	x9, #0x3                   	// #3
+  110a7c:	9ac90863 	udiv	x3, x3, x9
+  110a80:	52a00007 	movz	w7, #0x0, lsl #16
+  110a84:	72800007 	movk	w7, #0x0
+  110a88:	97ffff4c 	bl	1107b8 <drawcero>
+  110a8c:	aa1b03e3 	mov	x3, x27
+  110a90:	d2800129 	mov	x9, #0x9                   	// #9
+  110a94:	9b097c63 	mul	x3, x3, x9
+  110a98:	d2800149 	mov	x9, #0xa                   	// #10
+  110a9c:	9ac90863 	udiv	x3, x3, x9
+  110aa0:	8b030339 	add	x25, x25, x3
+  110aa4:	aa1903e0 	mov	x0, x25
+  110aa8:	aa1a03e1 	mov	x1, x26
+  110aac:	aa1b03e3 	mov	x3, x27
+  110ab0:	2a1c03e7 	mov	w7, w28
+  110ab4:	97ffff03 	bl	1106c0 <drawdos>
+  110ab8:	aa1b03e3 	mov	x3, x27
+  110abc:	d2800129 	mov	x9, #0x9                   	// #9
+  110ac0:	9b097c63 	mul	x3, x3, x9
+  110ac4:	d2800149 	mov	x9, #0xa                   	// #10
+  110ac8:	9ac90863 	udiv	x3, x3, x9
+  110acc:	8b030339 	add	x25, x25, x3
+  110ad0:	aa1903e0 	mov	x0, x25
+  110ad4:	aa1a03e1 	mov	x1, x26
+  110ad8:	aa1b03e3 	mov	x3, x27
+  110adc:	2a1c03e7 	mov	w7, w28
+  110ae0:	97ffff58 	bl	110840 <drawcinco>
+  110ae4:	a8c17bfd 	ldp	x29, x30, [sp], #16
+  110ae8:	d65f03c0 	ret
+>>>>>>> Stashed changes
 
 Disassembly of section .debug_line:
 
@@ -17419,7 +17691,7 @@ Disassembly of section .debug_info:
   18:	0009057c 	.inst	0x0009057c ; undefined
 	...
   24:	00000006 	udf	#6
-  28:	00000043 	udf	#67
+  28:	00000045 	udf	#69
   2c:	002a8001 	.inst	0x002a8001 ; NYI
   30:	00020000 	.inst	0x00020000 ; undefined
   34:	00000014 	udf	#20
@@ -17428,9 +17700,9 @@ Disassembly of section .debug_info:
   40:	00000008 	udf	#8
   44:	00c80000 	.inst	0x00c80000 ; undefined
   48:	00000009 	udf	#9
-  4c:	004f0000 	.inst	0x004f0000 ; undefined
-  50:	00570000 	.inst	0x00570000 ; undefined
-  54:	00430000 	.inst	0x00430000 ; undefined
+  4c:	00510000 	.inst	0x00510000 ; undefined
+  50:	00590000 	.inst	0x00590000 ; undefined
+  54:	00450000 	.inst	0x00450000 ; undefined
   58:	80010000 	.inst	0x80010000 ; undefined
   5c:	0000002a 	udf	#42
   60:	00280002 	.inst	0x00280002 ; NYI
@@ -17440,9 +17712,15 @@ Disassembly of section .debug_info:
   70:	00000000 	udf	#0
   74:	00110b24 	.inst	0x00110b24 ; undefined
   78:	00000000 	udf	#0
+<<<<<<< Updated upstream
   7c:	000000a4 	udf	#164
   80:	00000006 	udf	#6
   84:	00000043 	udf	#67
+=======
+  7c:	000000a6 	udf	#166
+  80:	00000006 	udf	#6
+  84:	00000045 	udf	#69
+>>>>>>> Stashed changes
   88:	Address 0x88 is out of bounds.
 
 
@@ -17497,6 +17775,7 @@ Disassembly of section .debug_str:
 
 0000000000000000 <.debug_str>:
    0:	2e707061 	uabdl	v1.4s, v3.4h, v16.4h
+<<<<<<< Updated upstream
    4:	6d2f0073 	stp	d19, d0, [x3, #-272]
    8:	632f746e 	.inst	0x632f746e ; undefined
    c:	7065522f 	adr	x15, caa53 <pantalla_negra+0x3a4ff>
@@ -17541,3 +17820,49 @@ Disassembly of section .debug_str:
   a8:	63646f65 	.inst	0x63646f65 ; undefined
   ac:	Address 0xac is out of bounds.
 
+=======
+   4:	682f0073 	.inst	0x682f0073 ; undefined
+   8:	2f656d6f 	.inst	0x2f656d6f ; undefined
+   c:	746e6173 	.inst	0x746e6173 ; undefined
+  10:	2f6d6169 	umlsl	v9.4s, v11.4h, v13.h[2]
+  14:	6b736544 	.inst	0x6b736544 ; undefined
+  18:	2f706f74 	.inst	0x2f706f74 ; undefined
+  1c:	3263646f 	.inst	0x3263646f ; undefined
+  20:	2d353230 	stp	s16, s12, [x17, #-88]
+  24:	3262616c 	.inst	0x3262616c ; undefined
+  28:	63646f2d 	.inst	0x63646f2d ; undefined
+  2c:	35323032 	cbnz	w18, 64630 <Set_Palette+0x1c625>
+  30:	62616c5f 	.inst	0x62616c5f ; undefined
+  34:	31675f32 	adds	w18, w25, #0x9d7, lsl #12
+  38:	6a652f39 	bics	w25, w25, w5, lsr #11
+  3c:	69637265 	ldpsw	x5, x28, [x19, #-232]
+  40:	326f6963 	.inst	0x326f6963 ; undefined
+  44:	554e4700 	.inst	0x554e4700 ; undefined
+  48:	20534120 	.inst	0x20534120 ; undefined
+  4c:	32342e32 	orr	w18, w17, #0xfff000
+  50:	61747300 	.inst	0x61747300 ; undefined
+  54:	732e7472 	.inst	0x732e7472 ; undefined
+  58:	6e6d2f00 	uqsub	v0.8h, v24.8h, v13.8h
+  5c:	2f632f74 	.inst	0x2f632f74 ; undefined
+  60:	72657355 	.inst	0x72657355 ; undefined
+  64:	424e2f73 	.inst	0x424e2f73 ; undefined
+  68:	2f434d5f 	.inst	0x2f434d5f ; undefined
+  6c:	75636f44 	.inst	0x75636f44 ; undefined
+  70:	746e656d 	.inst	0x746e656d ; undefined
+  74:	69472f73 	ldpsw	x19, x11, [x27, #56]
+  78:	62754874 	.inst	0x62754874 ; undefined
+  7c:	63646f2f 	.inst	0x63646f2f ; undefined
+  80:	35323032 	cbnz	w18, 64684 <Set_Palette+0x1c679>
+  84:	62616c2d 	.inst	0x62616c2d ; undefined
+  88:	646f2d32 	.inst	0x646f2d32 ; undefined
+  8c:	32303263 	orr	w3, w19, #0x1fff0000
+  90:	616c5f35 	.inst	0x616c5f35 ; undefined
+  94:	675f3262 	.inst	0x675f3262 ; undefined
+  98:	652f3931 	bfmls	z17.h, p6/m, z9.h, z15.h
+  9c:	6372656a 	.inst	0x6372656a ; undefined
+  a0:	6f696369 	umlsl2	v9.4s, v27.8h, v9.h[2]
+  a4:	72770032 	.inst	0x72770032 ; undefined
+  a8:	6f657469 	uqshl	v9.2d, v3.2d, #37
+  ac:	732e6364 	.inst	0x732e6364 ; undefined
+	...
+>>>>>>> Stashed changes

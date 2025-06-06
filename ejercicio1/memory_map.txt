@@ -89,8 +89,16 @@ LOAD linker stubs
  .debug_aranges
                 0x0000000000000060       0x30 writeodc.o
 
+<<<<<<< Updated upstream
 .debug_str      0x0000000000000000       0xa1
  .debug_str     0x0000000000000000       0xa1 app.o
                                          0x4f (size before relaxing)
  .debug_str     0x00000000000000a1       0x53 start.o
  .debug_str     0x00000000000000a1       0x54 writeodc.o
+=======
+.debug_str      0x0000000000000000       0x64
+ .debug_str     0x0000000000000000       0x64 app.o
+                                         0x51 (size before relaxing)
+ .debug_str     0x0000000000000064       0x53 start.o
+ .debug_str     0x0000000000000064       0x56 writeodc.o
+>>>>>>> Stashed changes
