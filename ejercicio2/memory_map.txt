@@ -88,8 +88,8 @@ LOAD linker stubs
  .debug_aranges
                 0x0000000000000060       0x30 writeodc.o
 
-.debug_str      0x0000000000000000       0xb1
- .debug_str     0x0000000000000000       0xb1 app.o
-                                         0x51 (size before relaxing)
- .debug_str     0x00000000000000b1       0x61 start.o
- .debug_str     0x00000000000000b1       0x64 writeodc.o
+.debug_str      0x0000000000000000       0xaf
+ .debug_str     0x0000000000000000       0xaf app.o
+                                         0x4f (size before relaxing)
+ .debug_str     0x00000000000000af       0x61 start.o
+ .debug_str     0x00000000000000af       0x64 writeodc.o
