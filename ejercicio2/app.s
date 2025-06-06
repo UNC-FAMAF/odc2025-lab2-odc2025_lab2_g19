@@ -115,6 +115,52 @@ loop0:
 	movk w7, #0x9700, lsl 00	
 	bl hacer_circulo
 
+	//-------------------------------------------------SILLON---------------------------------------------------------
+
+//Apoyabrazo izquierdo cuerpo
+	mov x0, #75
+	mov x1, #370
+	mov x2, #505
+	mov x3, #80
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo	
+
+//Apoyabrazo izquierdo margen izquierdo
+	mov x0, #70
+	mov x1, #375
+	mov x2, #39
+	mov x3, #80
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo	
+
+//Círculo del apoyabrazo izquierdo
+	mov x0, #75
+	mov x1, #375
+	mov x2, #5
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_circulo
+
+//Apoyabrazo derecho parte abajo
+	mov x0, #541
+	mov x1, #373
+	mov x2, #44
+	mov x3, #82
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo
+
+//Círculo del apoyabrazo izquierdo
+	mov x0, #580
+	mov x1, #375
+	mov x2, #5
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_circulo
+
+
 //CIRCULO IZQUIERDO DE RADIO 14
 	mov x0, #106
 	mov x1, #330
@@ -123,12 +169,31 @@ loop0:
 	movk w7, #0x0303, lsl 00
 	bl hacer_circulo
 
-    mov x0, 200 // esquina superior izquierda, pos x
-	mov x1, 200 // esquina superior izquierda, pos y
-	mov x3, 30
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawODC
+//CIRCULO DERECHO DE RADIO 14
+	mov x0, #549
+	mov x1, #330
+	mov x2, #14
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_circulo
+
+	//Margen izquierdo del sillón
+	mov x0, #92
+	mov x1, #330
+	mov x2, #14
+	mov x3, #125
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_rectangulo
+
+	//Margen derecho del sillón
+	mov x0, #549
+	mov x1, #330
+	mov x2, #14
+	mov x3, #125
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_rectangulo
 
 	//Cuerpo del sillón
 	mov x0, #106
