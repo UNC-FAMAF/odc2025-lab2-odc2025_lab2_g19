@@ -32,17 +32,21 @@ main:
 	// x0 contiene la direccion base del framebuffer
  	mov x20, x0	// Guarda la dirección base del framebuffer en x20
 	//---------------- CODE HERE -----------------------------------
-	sub sp, sp, #16    // Allocate space for 3 colors
-	mov x21, sp
-	mov w0, 0x0075AADB
-	mov w1, 0x00FFFFFF
-	mov w2, 0x00FCBF45
+	sub sp, sp, #48    // Allocate space for 3 colors
+	mov x24, sp
+	movz w0, 0x0075, lsl 16
+	movk w0, 0xAADB, lsl 00
+	movz w1, 0x00FF, lsl 16
+	movk w1, 0xFFFF, lsl 00
+	movz w2, 0x00FC, lsl 16
+	movk w2, 0xBF45, lsl 00
 	str w0, [sp, #0]
 	str w1, [sp, #4]
 	str w2, [sp, #8]
-	add sp, sp, #16
+	add sp, sp, #48
 
-	mov x2, SCREEN_HEIGH         // Y Size
+	mov x2, SCREEN_HEIGH  
+	mov x0, x20      // Y Size
 loop1:
 	mov x1, SCREEN_WIDTH         // X Size
 loop0:
@@ -288,6 +292,12 @@ animacion:
 	b .no_rebotar_x // si no llegamos a ningun limite, no rebotamos
 .rebotar_x:
 	sub x13, xzr, x13 // rebotar es que se mueva en la dirección opuesta ;)
+	add x24, x24, 4
+	sub x6, sp, 36
+	cmp x24, x6
+	b.lt .no_resetear
+	sub x24, x24, #12
+.no_resetear:
 .no_rebotar_x:
 	cmp x1, x9 // hacemos la misma logica con y
 	b.le .rebotar_y
@@ -297,13 +307,17 @@ animacion:
 	b .no_rebotar_y
 .rebotar_y:
 	sub x14, xzr, x14
+	add x24, x24, 4
+	sub x6, sp, 36
+	cmp x24, x6
+	b.lt .no_rebotar_y
+	sub x24, x24, #12
 .no_rebotar_y:
 	add x0, x0, x13 // nos movemos en x
 	add x1, x1, x14 // nos movemos en y
 	mov x15, x0 // guardamos la nueva posicion de x
 	mov x16, x1 // guardamos la nueva posicion de y
-	movz w7, #0x00FF, lsl 16 // color
-	movk w7, #0x1900, lsl 00
+	ldr w7,  [x24]
 
 	bl drawODC
 
@@ -362,8 +376,8 @@ pantalla_negra:
 	mov x2, 466 // ancho
 	mov x3, 242 // alto
 	mov w7, #0 
-	stp x29, x30, [sp, #-16]!   // para poder hacer un ret recursivo, hay que
+	stp x29, x30, [sp, #-32]!   // para poder hacer un ret recursivo, hay que
 	mov x29, sp                // guardar el frame pointer y el link register
 	bl hacer_rectangulo
-	ldp x29, x30, [sp], #16   // restauramos FP y LR
+	ldp x29, x30, [sp], #32   // restauramos FP y LR
 	ret
