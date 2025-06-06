@@ -204,6 +204,26 @@ loop0:
 	movk w7, #0x0303, lsl 00
 	bl hacer_rectangulo
 
+ 	// ----------------------SOPORTE DEL TELE------------------------
+
+	//Soporte izquierdo
+	mov x0, #101
+	mov x1, #150
+	mov x2, #10
+	mov x3, #135
+	movz w7, #0x19, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl hacer_rectangulo
+
+	//Soporte derecho
+	mov x0, #540
+	mov x1, #150
+	mov x2, #10
+	mov x3, #135
+	movz w7, #0x19, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl hacer_rectangulo
+
 	//ANIMACION
 	bl animacion
 
