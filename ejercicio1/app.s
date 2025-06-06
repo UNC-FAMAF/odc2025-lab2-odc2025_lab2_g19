@@ -26,6 +26,7 @@
 	.extern detailC
 	.extern drawcero
 	.extern drawcinco
+	.extern drawODC
 
 main:
 	// x0 contiene la direccion base del framebuffer
@@ -117,90 +118,14 @@ loop0:
 	movk w7, #0x0303, lsl 00
 	bl hacer_rectangulo
 
-	// O-DC2025
-	mov x0, 130	//centro x
-	mov x1, 170	//centro y
-	mov x3, 20	//alto
+	mov x0, 87 // esquina superior izquierda, pos x
+	mov x1, 16 // esquina superior izquierda, pos y
+	mov x3, 30
 	movz w7, #0x00FF, lsl 16
 	movk w7, #0xFFFF, lsl 00
-	bl drawO
-	//O interna
-	mov x0, 130	//centro x
-	mov x1, 170	//centro y
-	mov x3, 12	//alto
-	movz w7, #0x0019, lsl 16
-	movk w7, #0x1919, lsl 00
-	bl drawO
+	bl drawODC
 
-	//O-D-C2025
-	mov x0, 185	//centro x
-	mov x1, 170	//centro y
-	mov x3, 20	//alto
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawD
-	//D interna
-	mov x0, 185	//centro x
-	mov x1, 170	//centro y
-	mov x3, 12	//alto
-	movz w7, #0x0019, lsl 16
-	movk w7, #0x1919, lsl 00
-	bl drawD
-
-
-	// OD-C-2025
-	mov x0, 240	//centro x
-	mov x1, 170	//centro y
-	mov x3, 20	//alto
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawO
-	mov x0, 240	//centro x
-	mov x1, 170	//centro y
-	mov x3, 12	//alto
-	movz w7, #0x0019, lsl 16
-	movk w7, #0x1919, lsl 00
-	bl detailC
-
-
-	// ODC-2-025
-	mov x0, 290	//centro x
-	mov x1, 170	//centro y
-	mov x3, 20	//alto
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawdos
-
-	// ODC2-0-25
-	mov x0, 340	//centro x
-	mov x1, 170	//centro y
-	mov x3, 20	//alto
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawcero
-	// HUECO
-	mov x0, 340	//centro x
-	mov x1, 170	//centro y
-	mov x3, 12	//alto
-	movz w7, #0x0019, lsl 16
-	movk w7, #0x1919, lsl 00
-	bl drawcero
-
-	// ODC20-2-5
-	mov x0, 390	//centro x
-	mov x1, 170	//centro y
-	mov x3, 20	//alto
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawdos
-
-	// ODC 202-5
-	mov x0, 440	//centro x
-	mov x1, 170	//centro y
-	mov x3, 20	//alto
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawcinco
+	
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
 	// dudas)
 	mov x9, GPIO_BASE

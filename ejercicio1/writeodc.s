@@ -170,8 +170,6 @@ detailC:
     mov x21, x0
     mov x22, x1
     mov x23, x3
-    mov w24, w7 //particularmente me interesa el color con el que se pinta 
-                // TODAVIA NO IMPLEMENTADO
 
     //----------------------------------------
     //  PARTE VACIA (se tiene que pintar primero tristemente)
@@ -179,6 +177,13 @@ detailC:
 
     movz w7, 0x0019, lsl 16
     movk w7, 0x1919, lsl 00
+
+    //Ajustar el tamaño de x3
+    mov x9, 3
+    mul x3, x3, x9
+    mov x9, 5
+    udiv x3, x3, x9
+
 
     mov x2, x3  //Hacer que el ancho sea 2 * x3 
     add x2, x2, x2
@@ -192,6 +197,7 @@ detailC:
 
     sub x0, x0, x9
     //Acomodar el eje en y que sea x3 div 2
+
     mov x10, 2
     udiv x9, x3, x10
 
@@ -199,8 +205,6 @@ detailC:
     
     bl hacer_rectangulo
 
-
-    //QUEDA REFINAR  añadir patitas de la C
     ldp x29, x30, [sp], #16
     ret
 
@@ -494,9 +498,10 @@ drawODC:
 
     // Calcular y fijo el centro vertical (alineado)
     mov x9, 2
-    add x26, x1, x27
-    udiv x26, x26, x9   // centro en Y = y + x3 / 2
+    udiv x3, x3, x9 
+    add x26, x1, x3 // centro en Y = y + x3 / 2
 
+    mov x3, x27
     // Factor de avance horizontal (0.85 x3) para cada letra
     mov x9, 85
     mul x9, x9, x3      // x9 = 85 * x3
@@ -504,91 +509,124 @@ drawODC:
     udiv x9, x9, x10    // x9 = 0.85 * x3
 
     // Comienzo en x25, centro O
-    add x0, x25, x9
+    add x25, x25, x9
+    mov x0, x25
     mov x1, x26
     mov x3, x27
     mov w7, w28
     bl drawO
 
-    // O interna más chica
-    mov x0, x0
+    // O interna 
+    mov x0, x25
     mov x1, x26
     mov x3, x27
+    mov x10, 2
+    mul x3, x3, x10    
     mov x10, 3
-    udiv x3, x3, x10    // x3 = x3 / 3 (hueco interno)
+    udiv x3, x3, x10// x3 = x3 * 2/3 (hueco interno)
     movz w7, #0x0019, lsl 16
     movk w7, #0x1919, lsl 00
     bl drawO
 
     // Avanzar para D
-    add x25, x25, x9
-    add x0, x25, x9
+    mov x3, x27
+    add x25, x25, x3   //avance hasta el final de la o
+
+    add x25, x25, 3 //me muevo inm pixeles a la derecha
+
+    //seteo para D
+    mov x0, x25
     mov x1, x26
     mov x3, x27
     mov w7, w28
     bl drawD
 
     // D interna
-    mov x0, x0
+    mov x0, x25
     mov x1, x26
     mov x3, x27
-    udiv x3, x3, x10   // x3 / 3
+    mov x10, 2
+    mul x3, x3, x10
+    mov x10, 3
+    udiv x3, x3, x10   // x3 * 2/3
     movz w7, #0x0019, lsl 16
     movk w7, #0x1919, lsl 00
     bl drawD
 
+    //moverme tamD a la derecha 
+    mov x3, x27
+    add x25, x25, x3
+
     // Avanzar para C
-    add x25, x25, x9
-    add x0, x25, x9
+    mov x0, x25
     mov x1, x26
-    mov x3, x27
     mov w7, w28
-    bl drawO       // asumimos que `drawO` con color oscuro simula la C
-                   // o reemplazar por `bl detailC` si ya está implementado
-    mov x0, x0
+    bl drawO  
+
+    //agujero de la C
+    mov x0, x25
     mov x1, x26
     mov x3, x27
-    udiv x3, x3, x10
     movz w7, #0x0019, lsl 16
     movk w7, #0x1919, lsl 00
     bl detailC
 
     // Avanzar para 2
-    add x25, x25, x9
-    add x0, x25, x9
-    mov x1, x26
     mov x3, x27
+
+    add x25, x25, x3
+    mov x0, x25
+    mov x1, x26
     mov w7, w28
     bl drawdos
 
-    // Avanzar para 0
-    add x25, x25, x9
-    add x0, x25, x9
+    // Avanzar para 2
+    mov x3, x27
+    mov x9, 5
+    mul x3, x9, x3
+    mov x9, 6
+    udiv x3, x3, x9
+
+    add x25, x25, x3
+    mov x0, x25
     mov x1, x26
     mov x3, x27
     mov w7, w28
     bl drawcero
 
     // 0 interno
-    mov x0, x0
+    mov x0, x25
     mov x1, x26
     mov x3, x27
-    udiv x3, x3, x10
+    mov x9, 2
+    mul x3, x3, x9
+    mov x9, 3
+    udiv x3, x3, x9 
     movz w7, #0x0019, lsl 16
     movk w7, #0x1919, lsl 00
     bl drawcero
 
     // Avanzar para 2
-    add x25, x25, x9
-    add x0, x25, x9
+    mov x3, x27
+    mov x9, 9
+    mul x3, x3, x9
+    mov x9, 10
+    udiv x3, x3, x9
+    add x25, x25, x3
+    mov x0, x25
     mov x1, x26
     mov x3, x27
     mov w7, w28
     bl drawdos
 
     // Avanzar para 5
-    add x25, x25, x9
-    add x0, x25, x9
+    mov x3, x27
+    mov x9, 9
+    mul x3, x3, x9
+    mov x9, 10
+    udiv x3, x3, x9
+    add x25, x25, x3
+    mov x0, x25
     mov x1, x26
     mov x3, x27
     mov w7, w28
