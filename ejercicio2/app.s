@@ -65,8 +65,8 @@ loop0:
 	mov x1, 349 // esquina superior izquierda, pos y
 	mov x2, 640 // ancho
 	mov x3, 131 // alto
-	movz w7, #0x0054, lsl 16 // color
-	movk w7, #0x2613, lsl 00
+	movz w7, #0x31, lsl 16 // color
+	movk w7, #0x33CC, lsl 00
 	bl hacer_rectangulo
 
 
