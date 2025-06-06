@@ -72,6 +72,27 @@ loop0:
 	movk w7, #0x1919, lsl 00
 	bl hacer_rectangulo
 
+	
+	// ------------------------------- SOPORTE DEL TELEVISOR ------------------------------------------------
+
+	//Soporte izquierdo
+	mov x0, #101
+	mov x1, #150
+	mov x2, #10
+	mov x3, #135
+	movz w7, #0x19, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl hacer_rectangulo
+
+	//Soporte derecho
+	mov x0, #540
+	mov x1, #150
+	mov x2, #10
+	mov x3, #135
+	movz w7, #0x19, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl hacer_rectangulo
+
 	// PANTALLA DE TELE 273 - 16 = 257 - 3 = 254 480 - 257 = 223
 	mov x0, 91 // esquina superior izquierda, pos x
 	mov x1, 20 // esquina superior izquierda, pos y
