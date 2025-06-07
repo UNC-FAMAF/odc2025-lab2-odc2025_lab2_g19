@@ -50,8 +50,8 @@ main:
 loop1:
 	mov x1, SCREEN_WIDTH         // X Size
 loop0:
-	movz w7, #0x002F, lsl 16 // color
-	movk w7, #0x3254, lsl 00
+	movz w7, #0x006F, lsl 16 // color
+	movk w7, #0x7BF6, lsl 00
 	stur w7,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
 	sub x1,x1,1	   // Decrementar contador X
@@ -65,8 +65,8 @@ loop0:
 	mov x1, 349 // esquina superior izquierda, pos y
 	mov x2, 640 // ancho
 	mov x3, 131 // alto
-	movz w7, #0x0054, lsl 16 // color
-	movk w7, #0x2613, lsl 00
+	movz w7, #0x31, lsl 16 // color
+	movk w7, #0x33CC, lsl 00
 	bl hacer_rectangulo
 
 
@@ -115,6 +115,52 @@ loop0:
 	movk w7, #0x9700, lsl 00	
 	bl hacer_circulo
 
+	//-------------------------------------------------SILLON---------------------------------------------------------
+
+//Apoyabrazo izquierdo cuerpo
+	mov x0, #75
+	mov x1, #370
+	mov x2, #505
+	mov x3, #80
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo	
+
+//Apoyabrazo izquierdo margen izquierdo
+	mov x0, #70
+	mov x1, #375
+	mov x2, #39
+	mov x3, #80
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo	
+
+//Círculo del apoyabrazo izquierdo
+	mov x0, #75
+	mov x1, #375
+	mov x2, #5
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_circulo
+
+//Apoyabrazo derecho parte abajo
+	mov x0, #541
+	mov x1, #373
+	mov x2, #44
+	mov x3, #82
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo
+
+//Círculo del apoyabrazo izquierdo
+	mov x0, #580
+	mov x1, #375
+	mov x2, #5
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_circulo
+
+
 //CIRCULO IZQUIERDO DE RADIO 14
 	mov x0, #106
 	mov x1, #330
@@ -123,12 +169,31 @@ loop0:
 	movk w7, #0x0303, lsl 00
 	bl hacer_circulo
 
-    mov x0, 200 // esquina superior izquierda, pos x
-	mov x1, 200 // esquina superior izquierda, pos y
-	mov x3, 30
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawODC
+//CIRCULO DERECHO DE RADIO 14
+	mov x0, #549
+	mov x1, #330
+	mov x2, #14
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_circulo
+
+	//Margen izquierdo del sillón
+	mov x0, #92
+	mov x1, #330
+	mov x2, #14
+	mov x3, #125
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_rectangulo
+
+	//Margen derecho del sillón
+	mov x0, #549
+	mov x1, #330
+	mov x2, #14
+	mov x3, #125
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_rectangulo
 
 	//Cuerpo del sillón
 	mov x0, #106
@@ -137,6 +202,26 @@ loop0:
 	mov x3, #139
 	movz w7, #0xC0, lsl 16
 	movk w7, #0x0303, lsl 00
+	bl hacer_rectangulo
+
+ 	// ----------------------SOPORTE DEL TELE------------------------
+
+	//Soporte izquierdo
+	mov x0, #101
+	mov x1, #150
+	mov x2, #10
+	mov x3, #135
+	movz w7, #0x19, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl hacer_rectangulo
+
+	//Soporte derecho
+	mov x0, #540
+	mov x1, #150
+	mov x2, #10
+	mov x3, #135
+	movz w7, #0x19, lsl 16
+	movk w7, #0x1919, lsl 00
 	bl hacer_rectangulo
 
 	//ANIMACION

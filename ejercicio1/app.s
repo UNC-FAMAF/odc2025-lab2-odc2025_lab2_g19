@@ -6,6 +6,17 @@
 	.equ GPIO_GPFSEL0,   0x00
 	.equ GPIO_GPLEV0,    0x34
 
+	//COLORES
+	// FONDO, 0x6F7BF6
+	// PISO, 0x3133CC
+	// SILLON1, 0xC00303
+	// SILLON2, 0x760202
+	// CASTANO, 0x6C4600
+	// COLORADO, 0xF94B16
+	// RUBIO, 0xE89700
+	// MARCO_TELE, 0x191919 
+	//AUTITO
+
 	.globl main
 	.globl hacer_rectangulo		// .globl Hace que las funciones puedan ser accedidas
 								// desde otros codigos (lo uso en writeodc.s)
@@ -61,11 +72,32 @@ loop0:
 	movk w7, #0x1919, lsl 00
 	bl hacer_rectangulo
 
+	
+	// ------------------------------- SOPORTE DEL TELEVISOR ------------------------------------------------
+
+	//Soporte izquierdo
+	mov x0, #101
+	mov x1, #150
+	mov x2, #10
+	mov x3, #135
+	movz w7, #0x19, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl hacer_rectangulo
+
+	//Soporte derecho
+	mov x0, #540
+	mov x1, #150
+	mov x2, #10
+	mov x3, #135
+	movz w7, #0x19, lsl 16
+	movk w7, #0x1919, lsl 00
+	bl hacer_rectangulo
+
 	// PANTALLA DE TELE 273 - 16 = 257 - 3 = 254 480 - 257 = 223
-	mov x0, 92 // esquina superior izquierda, pos x
-	mov x1, 21 // esquina superior izquierda, pos y
-	mov x2, 466 // ancho
-	mov x3, 242 // alto
+	mov x0, 91 // esquina superior izquierda, pos x
+	mov x1, 20 // esquina superior izquierda, pos y
+	mov x2, 468 // ancho
+	mov x3, 244 // alto
 	mov w7, #0 
 	bl hacer_rectangulo
 
@@ -98,6 +130,52 @@ loop0:
 	movk w7, #0x9700, lsl 00	
 	bl hacer_circulo
 
+	//-------------------------------------------------SILLON---------------------------------------------------------
+
+//Apoyabrazo izquierdo cuerpo
+	mov x0, #75
+	mov x1, #370
+	mov x2, #505
+	mov x3, #80
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo	
+
+//Apoyabrazo izquierdo margen izquierdo
+	mov x0, #70
+	mov x1, #375
+	mov x2, #39
+	mov x3, #80
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo	
+
+//Círculo del apoyabrazo izquierdo
+	mov x0, #75
+	mov x1, #375
+	mov x2, #5
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_circulo
+
+//Apoyabrazo derecho parte abajo
+	mov x0, #541
+	mov x1, #373
+	mov x2, #44
+	mov x3, #82
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_rectangulo
+
+//Círculo del apoyabrazo izquierdo
+	mov x0, #580
+	mov x1, #375
+	mov x2, #5
+	movz w7, #0x76, lsl 16
+	movk w7, #0x0202, lsl 00
+	bl hacer_circulo
+
+
 //CIRCULO IZQUIERDO DE RADIO 14
 	mov x0, #106
 	mov x1, #330
@@ -106,12 +184,32 @@ loop0:
 	movk w7, #0x0303, lsl 00
 	bl hacer_circulo
 
-    mov x0, 200 // esquina superior izquierda, pos x
-	mov x1, 200 // esquina superior izquierda, pos y
-	mov x3, 30
-	movz w7, #0x00FF, lsl 16
-	movk w7, #0xFFFF, lsl 00
-	bl drawODC
+//CIRCULO DERECHO DE RADIO 14
+	mov x0, #549
+	mov x1, #330
+	mov x2, #14
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_circulo
+
+	//Margen izquierdo del sillón
+	mov x0, #92
+	mov x1, #330
+	mov x2, #14
+	mov x3, #125
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_rectangulo
+
+	//Margen derecho del sillón
+	mov x0, #549
+	mov x1, #330
+	mov x2, #14
+	mov x3, #125
+	movz w7, #0xC0, lsl 16
+	movk w7, #0x0303, lsl 00
+	bl hacer_rectangulo
+
 	//Cuerpo del sillón
 	mov x0, #106
 	mov x1, #316
@@ -120,6 +218,15 @@ loop0:
 	movz w7, #0xC0, lsl 16
 	movk w7, #0x0303, lsl 00
 	bl hacer_rectangulo
+
+
+    mov x0, 200 // esquina superior izquierda, pos x
+	mov x1, 200 // esquina superior izquierda, pos y
+	mov x3, 30
+	movz w7, #0x00FF, lsl 16
+	movk w7, #0xFFFF, lsl 00
+	bl drawODC
+
 
 	
 	// Ejemplo de uso de gpios (esto es codigo de los profes, lo dejo por las 
