@@ -406,7 +406,7 @@ animacion:
 
 	bl drawODC
 
-	mov x6, #1 // hacemos un delay
+	mov x6, #2 // hacemos un delay
 	lsl x6, x6, #21
 .delay:
     subs x6, x6, #1
