@@ -380,9 +380,8 @@ animacion:
 	add x24, x24, 4
 	sub x6, sp, 36
 	cmp x24, x6
-	b.lt .no_resetear
+	b.lt .no_rebotar_x //uso el no rebotar x para no resetear el color de odc
 	sub x24, x24, #12
-.no_resetear:
 .no_rebotar_x:
 	cmp x1, x9 // hacemos la misma logica con y
 	b.le .rebotar_y
