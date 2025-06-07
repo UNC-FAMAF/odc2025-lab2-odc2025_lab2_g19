@@ -16731,7 +16731,6 @@ Disassembly of section .text:
   110490:	a8c17bfd 	ldp	x29, x30, [sp], #16
   110494:	d65f03c0 	ret
 
-<<<<<<< Updated upstream
 0000000000110498 <drawD>:
   110498:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
   11049c:	aa0003f5 	mov	x21, x0
@@ -16789,96 +16788,6 @@ Disassembly of section .text:
   110564:	97fdff6e 	bl	9031c <hacer_rectangulo>
   110568:	a8c17bfd 	ldp	x29, x30, [sp], #16
   11056c:	d65f03c0 	ret
-=======
-00000000001104dc <detailC>:
-  1104dc:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
-  1104e0:	aa0003f5 	mov	x21, x0
-  1104e4:	aa0103f6 	mov	x22, x1
-  1104e8:	aa0303f7 	mov	x23, x3
-  1104ec:	52a00007 	movz	w7, #0x0, lsl #16
-  1104f0:	72800007 	movk	w7, #0x0
-  1104f4:	d2800069 	mov	x9, #0x3                   	// #3
-  1104f8:	9b097c63 	mul	x3, x3, x9
-  1104fc:	d28000a9 	mov	x9, #0x5                   	// #5
-  110500:	9ac90863 	udiv	x3, x3, x9
-  110504:	aa0303e2 	mov	x2, x3
-  110508:	8b020042 	add	x2, x2, x2
-  11050c:	d2800049 	mov	x9, #0x2                   	// #2
-  110510:	d28000aa 	mov	x10, #0x5                   	// #5
-  110514:	9b037d29 	mul	x9, x9, x3
-  110518:	9aca0929 	udiv	x9, x9, x10
-  11051c:	cb090000 	sub	x0, x0, x9
-  110520:	d280004a 	mov	x10, #0x2                   	// #2
-  110524:	9aca0869 	udiv	x9, x3, x10
-  110528:	cb090021 	sub	x1, x1, x9
-  11052c:	97fdff6e 	bl	902e4 <hacer_rectangulo>
-  110530:	a8c17bfd 	ldp	x29, x30, [sp], #16
-  110534:	d65f03c0 	ret
-
-0000000000110538 <drawdos>:
-  110538:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
-  11053c:	aa0003f5 	mov	x21, x0
-  110540:	aa0103f6 	mov	x22, x1
-  110544:	aa0303f7 	mov	x23, x3
-  110548:	aa0303e2 	mov	x2, x3
-  11054c:	d2800089 	mov	x9, #0x4                   	// #4
-  110550:	9b097c42 	mul	x2, x2, x9
-  110554:	d28000a9 	mov	x9, #0x5                   	// #5
-  110558:	9ac90842 	udiv	x2, x2, x9
-  11055c:	aa0303e9 	mov	x9, x3
-  110560:	d280004a 	mov	x10, #0x2                   	// #2
-  110564:	9aca0929 	udiv	x9, x9, x10
-  110568:	cb090021 	sub	x1, x1, x9
-  11056c:	aa0203e9 	mov	x9, x2
-  110570:	d280004a 	mov	x10, #0x2                   	// #2
-  110574:	9aca0929 	udiv	x9, x9, x10
-  110578:	cb090000 	sub	x0, x0, x9
-  11057c:	97fdff5a 	bl	902e4 <hacer_rectangulo>
-  110580:	aa1503e0 	mov	x0, x21
-  110584:	aa1603e1 	mov	x1, x22
-  110588:	aa1703e3 	mov	x3, x23
-  11058c:	52a00007 	movz	w7, #0x0, lsl #16
-  110590:	72800007 	movk	w7, #0x0
-  110594:	d2800129 	mov	x9, #0x9                   	// #9
-  110598:	9ac90869 	udiv	x9, x3, x9
-  11059c:	8b090021 	add	x1, x1, x9
-  1105a0:	aa0303e2 	mov	x2, x3
-  1105a4:	d2800069 	mov	x9, #0x3                   	// #3
-  1105a8:	9b097c42 	mul	x2, x2, x9
-  1105ac:	d28000a9 	mov	x9, #0x5                   	// #5
-  1105b0:	9ac90842 	udiv	x2, x2, x9
-  1105b4:	d2800089 	mov	x9, #0x4                   	// #4
-  1105b8:	9ac90863 	udiv	x3, x3, x9
-  1105bc:	d2800029 	mov	x9, #0x1                   	// #1
-  1105c0:	9b097c49 	mul	x9, x2, x9
-  1105c4:	d280008a 	mov	x10, #0x4                   	// #4
-  1105c8:	9aca0929 	udiv	x9, x9, x10
-  1105cc:	cb090000 	sub	x0, x0, x9
-  1105d0:	97fdff45 	bl	902e4 <hacer_rectangulo>
-  1105d4:	aa1503e0 	mov	x0, x21
-  1105d8:	aa1603e1 	mov	x1, x22
-  1105dc:	aa1703e3 	mov	x3, x23
-  1105e0:	52a00007 	movz	w7, #0x0, lsl #16
-  1105e4:	72800007 	movk	w7, #0x0
-  1105e8:	d2800069 	mov	x9, #0x3                   	// #3
-  1105ec:	9ac90869 	udiv	x9, x3, x9
-  1105f0:	cb090021 	sub	x1, x1, x9
-  1105f4:	aa0303e2 	mov	x2, x3
-  1105f8:	d2800049 	mov	x9, #0x2                   	// #2
-  1105fc:	9b097c42 	mul	x2, x2, x9
-  110600:	d2800069 	mov	x9, #0x3                   	// #3
-  110604:	9ac90842 	udiv	x2, x2, x9
-  110608:	d2800089 	mov	x9, #0x4                   	// #4
-  11060c:	9ac90863 	udiv	x3, x3, x9
-  110610:	d28000a9 	mov	x9, #0x5                   	// #5
-  110614:	9b097c49 	mul	x9, x2, x9
-  110618:	d28000ea 	mov	x10, #0x7                   	// #7
-  11061c:	9aca0929 	udiv	x9, x9, x10
-  110620:	cb090000 	sub	x0, x0, x9
-  110624:	97fdff30 	bl	902e4 <hacer_rectangulo>
-  110628:	a8c17bfd 	ldp	x29, x30, [sp], #16
-  11062c:	d65f03c0 	ret
->>>>>>> Stashed changes
 
 0000000000110570 <drawdos>:
   110570:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
@@ -16944,7 +16853,6 @@ Disassembly of section .text:
   110660:	a8c17bfd 	ldp	x29, x30, [sp], #16
   110664:	d65f03c0 	ret
 
-<<<<<<< Updated upstream
 0000000000110668 <drawcero>:
   110668:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
   11066c:	aa0003f5 	mov	x21, x0
@@ -16980,71 +16888,6 @@ Disassembly of section .text:
   1106e4:	97fdff0e 	bl	9031c <hacer_rectangulo>
   1106e8:	a8c17bfd 	ldp	x29, x30, [sp], #16
   1106ec:	d65f03c0 	ret
-=======
-00000000001106b8 <drawcinco>:
-  1106b8:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
-  1106bc:	aa0003f5 	mov	x21, x0
-  1106c0:	aa0103f6 	mov	x22, x1
-  1106c4:	aa0303f7 	mov	x23, x3
-  1106c8:	aa0303e2 	mov	x2, x3
-  1106cc:	d2800089 	mov	x9, #0x4                   	// #4
-  1106d0:	9b097c42 	mul	x2, x2, x9
-  1106d4:	d28000a9 	mov	x9, #0x5                   	// #5
-  1106d8:	9ac90842 	udiv	x2, x2, x9
-  1106dc:	aa0303e9 	mov	x9, x3
-  1106e0:	d280004a 	mov	x10, #0x2                   	// #2
-  1106e4:	9aca0929 	udiv	x9, x9, x10
-  1106e8:	cb090021 	sub	x1, x1, x9
-  1106ec:	aa0203e9 	mov	x9, x2
-  1106f0:	d280004a 	mov	x10, #0x2                   	// #2
-  1106f4:	9aca0929 	udiv	x9, x9, x10
-  1106f8:	cb090000 	sub	x0, x0, x9
-  1106fc:	97fdfefa 	bl	902e4 <hacer_rectangulo>
-  110700:	aa1503e0 	mov	x0, x21
-  110704:	aa1603e1 	mov	x1, x22
-  110708:	aa1703e3 	mov	x3, x23
-  11070c:	52a00007 	movz	w7, #0x0, lsl #16
-  110710:	72800007 	movk	w7, #0x0
-  110714:	d2800129 	mov	x9, #0x9                   	// #9
-  110718:	9ac90869 	udiv	x9, x3, x9
-  11071c:	8b090021 	add	x1, x1, x9
-  110720:	aa0303e2 	mov	x2, x3
-  110724:	d2800069 	mov	x9, #0x3                   	// #3
-  110728:	9b097c42 	mul	x2, x2, x9
-  11072c:	d2800089 	mov	x9, #0x4                   	// #4
-  110730:	9ac90842 	udiv	x2, x2, x9
-  110734:	d2800089 	mov	x9, #0x4                   	// #4
-  110738:	9ac90863 	udiv	x3, x3, x9
-  11073c:	d2800069 	mov	x9, #0x3                   	// #3
-  110740:	9b097c49 	mul	x9, x2, x9
-  110744:	d280008a 	mov	x10, #0x4                   	// #4
-  110748:	9aca0929 	udiv	x9, x9, x10
-  11074c:	cb090000 	sub	x0, x0, x9
-  110750:	97fdfee5 	bl	902e4 <hacer_rectangulo>
-  110754:	aa1503e0 	mov	x0, x21
-  110758:	aa1603e1 	mov	x1, x22
-  11075c:	aa1703e3 	mov	x3, x23
-  110760:	52a00007 	movz	w7, #0x0, lsl #16
-  110764:	72800007 	movk	w7, #0x0
-  110768:	d2800069 	mov	x9, #0x3                   	// #3
-  11076c:	9ac90869 	udiv	x9, x3, x9
-  110770:	cb090021 	sub	x1, x1, x9
-  110774:	aa0303e2 	mov	x2, x3
-  110778:	d2800189 	mov	x9, #0xc                   	// #12
-  11077c:	9b097c42 	mul	x2, x2, x9
-  110780:	d28002a9 	mov	x9, #0x15                  	// #21
-  110784:	9ac90842 	udiv	x2, x2, x9
-  110788:	d2800089 	mov	x9, #0x4                   	// #4
-  11078c:	9ac90863 	udiv	x3, x3, x9
-  110790:	d2800049 	mov	x9, #0x2                   	// #2
-  110794:	9b097c49 	mul	x9, x2, x9
-  110798:	d28000ea 	mov	x10, #0x7                   	// #7
-  11079c:	9aca0929 	udiv	x9, x9, x10
-  1107a0:	cb090000 	sub	x0, x0, x9
-  1107a4:	97fdfed0 	bl	902e4 <hacer_rectangulo>
-  1107a8:	a8c17bfd 	ldp	x29, x30, [sp], #16
-  1107ac:	d65f03c0 	ret
->>>>>>> Stashed changes
 
 00000000001106f0 <drawcinco>:
   1106f0:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
@@ -17101,7 +16944,6 @@ Disassembly of section .text:
   1107bc:	9ac90842 	udiv	x2, x2, x9
   1107c0:	d2800089 	mov	x9, #0x4                   	// #4
   1107c4:	9ac90863 	udiv	x3, x3, x9
-<<<<<<< Updated upstream
   1107c8:	d2800049 	mov	x9, #0x2                   	// #2
   1107cc:	9b097c49 	mul	x9, x2, x9
   1107d0:	d28000ea 	mov	x10, #0x7                   	// #7
@@ -17221,111 +17063,6 @@ Disassembly of section .text:
   110990:	97ffff58 	bl	1106f0 <drawcinco>
   110994:	a8c17bfd 	ldp	x29, x30, [sp], #16
   110998:	d65f03c0 	ret
-=======
-  1107c8:	8b03003a 	add	x26, x1, x3
-  1107cc:	aa1b03e3 	mov	x3, x27
-  1107d0:	d2800aa9 	mov	x9, #0x55                  	// #85
-  1107d4:	9b037d29 	mul	x9, x9, x3
-  1107d8:	d2800c8a 	mov	x10, #0x64                  	// #100
-  1107dc:	9aca0929 	udiv	x9, x9, x10
-  1107e0:	8b090339 	add	x25, x25, x9
-  1107e4:	aa1903e0 	mov	x0, x25
-  1107e8:	aa1a03e1 	mov	x1, x26
-  1107ec:	aa1b03e3 	mov	x3, x27
-  1107f0:	2a1c03e7 	mov	w7, w28
-  1107f4:	97fffef2 	bl	1103bc <drawO>
-  1107f8:	aa1903e0 	mov	x0, x25
-  1107fc:	aa1a03e1 	mov	x1, x26
-  110800:	aa1b03e3 	mov	x3, x27
-  110804:	d280004a 	mov	x10, #0x2                   	// #2
-  110808:	9b0a7c63 	mul	x3, x3, x10
-  11080c:	d280006a 	mov	x10, #0x3                   	// #3
-  110810:	9aca0863 	udiv	x3, x3, x10
-  110814:	52a00007 	movz	w7, #0x0, lsl #16
-  110818:	72800007 	movk	w7, #0x0
-  11081c:	97fffee8 	bl	1103bc <drawO>
-  110820:	aa1b03e3 	mov	x3, x27
-  110824:	8b030339 	add	x25, x25, x3
-  110828:	91000f39 	add	x25, x25, #0x3
-  11082c:	aa1903e0 	mov	x0, x25
-  110830:	aa1a03e1 	mov	x1, x26
-  110834:	aa1b03e3 	mov	x3, x27
-  110838:	2a1c03e7 	mov	w7, w28
-  11083c:	97ffff09 	bl	110460 <drawD>
-  110840:	aa1903e0 	mov	x0, x25
-  110844:	aa1a03e1 	mov	x1, x26
-  110848:	aa1b03e3 	mov	x3, x27
-  11084c:	d280004a 	mov	x10, #0x2                   	// #2
-  110850:	9b0a7c63 	mul	x3, x3, x10
-  110854:	d280006a 	mov	x10, #0x3                   	// #3
-  110858:	9aca0863 	udiv	x3, x3, x10
-  11085c:	52a00007 	movz	w7, #0x0, lsl #16
-  110860:	72800007 	movk	w7, #0x0
-  110864:	97fffeff 	bl	110460 <drawD>
-  110868:	aa1b03e3 	mov	x3, x27
-  11086c:	8b030339 	add	x25, x25, x3
-  110870:	aa1903e0 	mov	x0, x25
-  110874:	aa1a03e1 	mov	x1, x26
-  110878:	2a1c03e7 	mov	w7, w28
-  11087c:	97fffed0 	bl	1103bc <drawO>
-  110880:	aa1903e0 	mov	x0, x25
-  110884:	aa1a03e1 	mov	x1, x26
-  110888:	aa1b03e3 	mov	x3, x27
-  11088c:	52a00007 	movz	w7, #0x0, lsl #16
-  110890:	72800007 	movk	w7, #0x0
-  110894:	97ffff12 	bl	1104dc <detailC>
-  110898:	aa1b03e3 	mov	x3, x27
-  11089c:	8b030339 	add	x25, x25, x3
-  1108a0:	aa1903e0 	mov	x0, x25
-  1108a4:	aa1a03e1 	mov	x1, x26
-  1108a8:	2a1c03e7 	mov	w7, w28
-  1108ac:	97ffff23 	bl	110538 <drawdos>
-  1108b0:	aa1b03e3 	mov	x3, x27
-  1108b4:	d28000a9 	mov	x9, #0x5                   	// #5
-  1108b8:	9b037d23 	mul	x3, x9, x3
-  1108bc:	d28000c9 	mov	x9, #0x6                   	// #6
-  1108c0:	9ac90863 	udiv	x3, x3, x9
-  1108c4:	8b030339 	add	x25, x25, x3
-  1108c8:	aa1903e0 	mov	x0, x25
-  1108cc:	aa1a03e1 	mov	x1, x26
-  1108d0:	aa1b03e3 	mov	x3, x27
-  1108d4:	2a1c03e7 	mov	w7, w28
-  1108d8:	97ffff56 	bl	110630 <drawcero>
-  1108dc:	aa1903e0 	mov	x0, x25
-  1108e0:	aa1a03e1 	mov	x1, x26
-  1108e4:	aa1b03e3 	mov	x3, x27
-  1108e8:	d2800049 	mov	x9, #0x2                   	// #2
-  1108ec:	9b097c63 	mul	x3, x3, x9
-  1108f0:	d2800069 	mov	x9, #0x3                   	// #3
-  1108f4:	9ac90863 	udiv	x3, x3, x9
-  1108f8:	52a00007 	movz	w7, #0x0, lsl #16
-  1108fc:	72800007 	movk	w7, #0x0
-  110900:	97ffff4c 	bl	110630 <drawcero>
-  110904:	aa1b03e3 	mov	x3, x27
-  110908:	d2800129 	mov	x9, #0x9                   	// #9
-  11090c:	9b097c63 	mul	x3, x3, x9
-  110910:	d2800149 	mov	x9, #0xa                   	// #10
-  110914:	9ac90863 	udiv	x3, x3, x9
-  110918:	8b030339 	add	x25, x25, x3
-  11091c:	aa1903e0 	mov	x0, x25
-  110920:	aa1a03e1 	mov	x1, x26
-  110924:	aa1b03e3 	mov	x3, x27
-  110928:	2a1c03e7 	mov	w7, w28
-  11092c:	97ffff03 	bl	110538 <drawdos>
-  110930:	aa1b03e3 	mov	x3, x27
-  110934:	d2800129 	mov	x9, #0x9                   	// #9
-  110938:	9b097c63 	mul	x3, x3, x9
-  11093c:	d2800149 	mov	x9, #0xa                   	// #10
-  110940:	9ac90863 	udiv	x3, x3, x9
-  110944:	8b030339 	add	x25, x25, x3
-  110948:	aa1903e0 	mov	x0, x25
-  11094c:	aa1a03e1 	mov	x1, x26
-  110950:	aa1b03e3 	mov	x3, x27
-  110954:	2a1c03e7 	mov	w7, w28
-  110958:	97ffff58 	bl	1106b8 <drawcinco>
-  11095c:	a8c17bfd 	ldp	x29, x30, [sp], #16
-  110960:	d65f03c0 	ret
->>>>>>> Stashed changes
 
 Disassembly of section .debug_line:
 
@@ -17535,7 +17272,7 @@ Disassembly of section .debug_info:
   18:	000903f4 	.inst	0x000903f4 ; undefined
 	...
   24:	00000006 	udf	#6
-  28:	00000045 	udf	#69
+  28:	00000043 	udf	#67
   2c:	002a8001 	.inst	0x002a8001 ; NYI
   30:	00020000 	.inst	0x00020000 ; undefined
   34:	00000014 	udf	#20
@@ -17544,9 +17281,9 @@ Disassembly of section .debug_info:
   40:	00000008 	udf	#8
   44:	00c80000 	.inst	0x00c80000 ; undefined
   48:	00000009 	udf	#9
-  4c:	00510000 	.inst	0x00510000 ; undefined
-  50:	00060000 	.inst	0x00060000 ; undefined
-  54:	00450000 	.inst	0x00450000 ; undefined
+  4c:	004f0000 	.inst	0x004f0000 ; undefined
+  50:	00570000 	.inst	0x00570000 ; undefined
+  54:	00430000 	.inst	0x00430000 ; undefined
   58:	80010000 	.inst	0x80010000 ; undefined
   5c:	0000002a 	udf	#42
   60:	00280002 	.inst	0x00280002 ; NYI
@@ -17556,15 +17293,9 @@ Disassembly of section .debug_info:
   70:	00000000 	udf	#0
   74:	0011099c 	.inst	0x0011099c ; undefined
   78:	00000000 	udf	#0
-<<<<<<< Updated upstream
   7c:	00000096 	udf	#150
   80:	00000006 	udf	#6
   84:	00000043 	udf	#67
-=======
-  7c:	00000059 	udf	#89
-  80:	00000006 	udf	#6
-  84:	00000045 	udf	#69
->>>>>>> Stashed changes
   88:	Address 0x88 is out of bounds.
 
 
@@ -17619,7 +17350,6 @@ Disassembly of section .debug_str:
 
 0000000000000000 <.debug_str>:
    0:	2e707061 	uabdl	v1.4s, v3.4h, v16.4h
-<<<<<<< Updated upstream
    4:	6d2f0073 	stp	d19, d0, [x3, #-272]
    8:	632f746e 	.inst	0x632f746e ; undefined
    c:	7065522f 	adr	x15, caa53 <.ret_hc+0x3a66b>
@@ -17660,29 +17390,3 @@ Disassembly of section .debug_str:
   98:	6f657469 	uqshl	v9.2d, v3.2d, #37
   9c:	732e6364 	.inst	0x732e6364 ; undefined
 	...
-=======
-   4:	682f0073 	.inst	0x682f0073 ; undefined
-   8:	2f656d6f 	.inst	0x2f656d6f ; undefined
-   c:	746e6173 	.inst	0x746e6173 ; undefined
-  10:	2f6d6169 	umlsl	v9.4s, v11.4h, v13.h[2]
-  14:	6b736544 	.inst	0x6b736544 ; undefined
-  18:	2f706f74 	.inst	0x2f706f74 ; undefined
-  1c:	3263646f 	.inst	0x3263646f ; undefined
-  20:	2d353230 	stp	s16, s12, [x17, #-88]
-  24:	3262616c 	.inst	0x3262616c ; undefined
-  28:	63646f2d 	.inst	0x63646f2d ; undefined
-  2c:	35323032 	cbnz	w18, 64630 <Set_Palette+0x1c625>
-  30:	62616c5f 	.inst	0x62616c5f ; undefined
-  34:	31675f32 	adds	w18, w25, #0x9d7, lsl #12
-  38:	6a652f39 	bics	w25, w25, w5, lsr #11
-  3c:	69637265 	ldpsw	x5, x28, [x19, #-232]
-  40:	316f6963 	adds	w3, w11, #0xbda, lsl #12
-  44:	554e4700 	.inst	0x554e4700 ; undefined
-  48:	20534120 	.inst	0x20534120 ; undefined
-  4c:	32342e32 	orr	w18, w17, #0xfff000
-  50:	61747300 	.inst	0x61747300 ; undefined
-  54:	732e7472 	.inst	0x732e7472 ; undefined
-  58:	69727700 	ldpsw	x0, x29, [x24, #-112]
-  5c:	646f6574 	.inst	0x646f6574 ; undefined
-  60:	00732e63 	.inst	0x00732e63 ; undefined
->>>>>>> Stashed changes
