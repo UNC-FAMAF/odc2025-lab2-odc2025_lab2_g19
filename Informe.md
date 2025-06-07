@@ -15,4 +15,6 @@ esta rebotando. Cada vez que rebota, cambia de color y aparece ruido blanco en l
 Justificación instrucciones ARMv8:
 .equ: lo usamos para definir constantes
 .globl, .extern: lo usamos para poder modularizar el proyecto
-movz/movk: lo usamos para poder hacer mov de mas del limite de bits
+str: lo usamos para guardar en memoria. También usamos stur, no notamos diferencia.
+stp/ldp: lo usamos para hacer un ret recursivo, guardando en el stack un puntero.
+
